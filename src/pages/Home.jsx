@@ -10,6 +10,7 @@ import EmployeeImg from "../assets/employee.png"
 import AnalyticsImg from "../assets/analytical.png"
 import PayrollImg from "../assets/payroll.png"
 import { CircleDollarSign, Users, Sparkles, Wallet, Check } from "lucide-react";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -619,7 +620,10 @@ const AnotherSection = () => {
     <div>
       <Wrapper>
         <TeamSecion/>
+        <ModernizeSection/>
+       
       </Wrapper>
+       <Footer/>
     </div>
   )
 }
@@ -784,6 +788,42 @@ const TeamSecion = () => {
           )}
         </div>
     
+    </div>
+  );
+};
+
+
+const ModernizeSection = () => {
+  return (
+    <div
+      style={{
+        background:
+          "linear-gradient(135deg, #1233CC 0%, #0F3CCF 15%, #0B44D2 30%, #074CD4 45%, #0596F1 70%, #0083EA 85%, #0089EC 100%)",
+      }}
+      className="rounded-[20px] px-8 py-14 md:py-16 text-center  mb-5  mx-auto"
+    >
+      <h2 className="text-white text-3xl md:text-[54px] font-bold leading-tight max-w-2xl mx-auto">
+        Ready to modernize your people operations?
+      </h2>
+
+      <p className="text-white/80 text-sm md:text-[20px] mt-4 max-w-xl mx-auto leading-relaxed">
+        Join hundreds of forward-thinking organizations using Cephas HR to
+        build better workplaces. Book a personalized demo tailored to your
+        company's workflows.
+      </p>
+
+      <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
+          Schedule Your Live Demo
+        </button>
+
+        <a
+          href="#"
+          className="text-white text-sm font-medium  hover:text-white/80 transition-colors"
+        >
+          Talk to an HR Solutions Specialist
+        </a>
+      </div>
     </div>
   );
 };
