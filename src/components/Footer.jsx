@@ -37,15 +37,15 @@ const Footer = () => {
          <p className="text-white font-bold text-[18px] leading-snug mb-4 max-w-[210px]">
   The all-in-one HR, payroll, and workforce operating system
 </p>
-          <p className="text-white/50 text-xs leading-relaxed">
+          <p className="text-white/50 text-[14px] font-normal leading-relaxed">
             © 2026 Cephas HR Inc. All rights reserved.
           </p>
         </div>
 
         {/* PRODUCT */}
         <div>
-          <h4 className="text-white/50 text-xs font-semibold tracking-wider uppercase mb-4">Product</h4>
-          <ul className="space-y-3 text-sm text-white/80">
+          <h4 className="text-[#fffff] text-[18px] font-bold tracking-wider uppercase mb-1">Product</h4>
+          <ul className="space-y-2 text-[16px] text-[#fffff]">
             <li><a href="#" className="hover:text-white transition-colors">Core HR & Directory</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Recruitment & ATS</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Payroll & Compliance</a></li>
@@ -57,8 +57,8 @@ const Footer = () => {
 
         {/* SOLUTIONS */}
         <div>
-          <h4 className="text-white/50 text-xs font-semibold tracking-wider uppercase mb-4">Solutions</h4>
-          <ul className="space-y-3 text-sm text-white/80">
+          <h4 className="text-white text-[18px] font-bold  uppercase mb-1">Solutions</h4>
+          <ul className="space-y-2 text-[16px] text-white">
             <li><a href="#" className="hover:text-white transition-colors">For HR Leaders</a></li>
             <li><a href="#" className="hover:text-white transition-colors">For Founders & CEOs</a></li>
             <li><a href="#" className="hover:text-white transition-colors">For Operations Teams</a></li>
@@ -70,8 +70,8 @@ const Footer = () => {
 
         {/* RESOURCES */}
         <div>
-          <h4 className="text-white/50 text-xs font-semibold tracking-wider uppercase mb-4">Resources</h4>
-          <ul className="space-y-3 text-sm text-white/80">
+          <h4 className="text-white text-[18px] font-bold tracking-wider uppercase mb-1">Resources</h4>
+          <ul className="space-y-2 text-[16px] text-white">
             <li><a href="#" className="hover:text-white transition-colors">Blog & Insights</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
@@ -83,8 +83,8 @@ const Footer = () => {
 
         {/* WORKFORCE & FINANCE */}
         <div>
-          <h4 className="text-white/50 text-xs font-semibold tracking-wider uppercase mb-4">Workforce & Finance</h4>
-          <ul className="space-y-3 text-sm text-white/80">
+          <h4 className="text-white text-[18px] font-bold tracking-wider uppercase mb-1 whitespace-nowrap">Workforce & Finance</h4>
+          <ul className="space-y-2 text-[16px] text-white">
             <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Contact Sales</a></li>
@@ -97,7 +97,7 @@ const Footer = () => {
 
       {/* Divider */}
       <div className="border-t border-white/10 mt-12 pt-6">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-white/70">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/70">
           <a href="#" className="flex items-center gap-2 hover:text-white transition-colors">
             <InstagramIcon /> Instagram
           </a>
