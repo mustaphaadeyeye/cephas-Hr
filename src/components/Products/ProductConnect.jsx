@@ -10,7 +10,7 @@ import calendar from "../../assets/Calendar.svg";
 
 const ProductConnect = () => {
   return (
-    <div className="bg-[#F7F7F9]">
+    <div className="bg-white mt-20">
       <div className="mx-auto max-w-[1400px] px-4 pt-20">
         <OrganizationItem
           number="02"
@@ -23,7 +23,7 @@ const ProductConnect = () => {
           with zero scheduling friction.
         </span>
       </p>
-      <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-center justify-center gap-10 mt-20 xl:max-w-[1300px] mx-auto ">
+      <div className="flex flex-col px-4 xl:flex xl:flex-row md:flex md:flex-col items-center justify-center gap-10 mt-20 xl:max-w-[1300px] mx-auto ">
         <div className="flex-1">
           <PillarCard
             width="600px"
@@ -71,7 +71,7 @@ const ProductConnect = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-start justify-center gap-10 mt-20 max-w-[1300px] mx-auto ">
+      <div className="flex flex-col px-4 xl:flex xl:flex-row md:flex md:flex-col items-start justify-center gap-10 mt-20 max-w-[1300px] mx-auto ">
         <div className="flex-1">
           <PillarCard
             width="600px"

@@ -43,7 +43,7 @@ const ProductNative = () => {
 
   return (
     <div>
-      <div className="bg-[#F7F7F9] pb-10">
+      <div className="bg-[#F7F7F9] pb-10 mt-20 rounded-2xl">
         <div className="mx-auto max-w-[1400px] px-4 pt-20">
           <OrganizationItem
             number="04"
@@ -60,7 +60,7 @@ const ProductNative = () => {
           Employees and managers each get a purpose-built mobile experience —
           not a stripped-down version of the web app.
         </p>
-        <div className="flex flex-col gap-10 max-w-[1400px] mt-18 xl:flex xl:flex-row md:flex md:flex-col mx-auto items-center justify-center">
+        <div className="flex flex-col px-8 gap-10 max-w-[1400px] mt-18 xl:flex xl:flex-row md:flex md:flex-col mx-auto items-center justify-center">
           <div className="flex-1">
             <PillarCard
               badge="Staff / Employees"
@@ -180,12 +180,12 @@ const ProductNative = () => {
               Two Powerful Experiences.
             </span>
           </p>
-          <p className="text-[18px]">
+          <p className="text-[18px] text-center mt-4">
             The same data, the same source of truth — presented differently for
             each role.
           </p>
-          <div>
-            <div className="relative max-w-[420px] overflow-hidden rounded-3xl bg-[#1233CC] p-8">
+          <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col gap-10 mt-18 max-w-[1200px] mx-auto">
+            <div className="relative  overflow-hidden rounded-3xl bg-[#1233CC] p-8">
               <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/5" />
 
               <h3 className="relative text-[26px] font-bold leading-[1.3] text-white">
@@ -209,6 +209,35 @@ const ProductNative = () => {
                   </div>
                 ))}
               </div>
+            </div>
+            <div>
+              <PillarCard
+                badge="Staff / Employees"
+                title="Everything work-related, at your fingertips"
+                description="For staff and individual contributors who want things to work — simply, instantly, without needing to contact HR."
+                features={[
+                  {
+                    description:
+                      "Update personal details and banking credentials without emailing HR",
+                  },
+                  {
+                    description:
+                      "Start a work timer, snap a receipt or request leave from your phone",
+                  },
+                  {
+                    description:
+                      "Track your own KPIs, feedback and project wins in real time",
+                  },
+                  {
+                    description:
+                      "Access payslips, expense reimbursements and training from one portal",
+                  },
+                  {
+                    description:
+                      "Ask the AI Assistant anything — policies, leave balance, next payroll date",
+                  },
+                ]}
+              />
             </div>
           </div>
         </div>
