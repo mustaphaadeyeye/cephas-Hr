@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import Wrapper from '../components/Wrapper'
 import { Check, X } from "lucide-react";
+import PriceFeature from "./PriceFeature";
+import PriceFaq from "./PriceFaq";
+import Footer from "../components/Footer";
 
 const Pricing = () => {
   return (
     <div>
         <PricingHome/>
         <PricingCards/>
+        <PriceFeature/>
+        <PriceCompare/>
+        <PriceFaq/>
+        <TrialSection/>
+        <Footer/>
     </div>
   )
 }
@@ -83,7 +91,8 @@ const plans = [
     subtitle: "Up to 50 employees",
     description: "For lean teams moving fast.",
     price: "₦3,000",
-    priceNote: "per employee / month",
+    priceNote: "per employee /",
+    priceMonth: "month",
     popular: false,
     included: [
       "Core HR Directory and employee records",
@@ -112,7 +121,8 @@ const plans = [
     subtitle: "Up to 500 employees",
     description: "For scaling teams that need full visibility.",
     price: "₦5,500",
-    priceNote: "per employee / month",
+    priceNote: "per employee /",
+    priceMonth: "month",
     popular: true,
     included: [
       "Everything in Starter, plus",
@@ -140,8 +150,9 @@ const plans = [
     name: "Enterprise",
     subtitle: "500+ employees",
     description: "For organizations that need complete control.",
-    price: "Custom",
-    priceNote: "tailored to your team",
+    price: "5,500",
+    priceNote: "per employee /",
+    priceMonth: "month",
     popular: false,
     included: [
       "Everything in Growth, plus",
@@ -175,11 +186,11 @@ const PricingCard = ({ plan }) => (
     {/* Header */}
     <div className="mb-4 flex items-start justify-between">
       <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eef2ff] text-sm font-semibold text-[#193FD3]">
+        <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#eef2ff] text-sm font-semibold text-[#193FD3]">
           {plan.letter}
         </div>
         <div>
-          <h3 className="text-base font-semibold text-[#111111]">
+          <h3 className="text-base font-bold text-[#111111]">
             {plan.name}
           </h3>
           <p className="text-xs text-gray-400">{plan.subtitle}</p>
@@ -196,9 +207,13 @@ const PricingCard = ({ plan }) => (
     <p className="mb-4 text-sm text-gray-500">{plan.description}</p>
 
     {/* Price */}
-    <div className="mb-5">
-      <span className="text-3xl font-bold text-[#111111]">{plan.price}</span>
-      <p className="text-xs text-gray-400">{plan.priceNote}</p>
+    <div className="mb-5 flex items-center gap-2">
+      <h1 className="text-3xl font-bold text-[#111111]">{plan.price}</h1>
+      <div>
+        <p className="text-[14px] font-normal text-gray-400">{plan.priceNote}</p>
+      <span className="text-[14px] font-normal text-gray-400">{plan.priceMonth}</span>
+      </div>
+      
     </div>
 
     {/* CTA */}
@@ -206,7 +221,7 @@ const PricingCard = ({ plan }) => (
       className={`mb-1 w-full rounded-full py-3 text-sm font-medium text-white transition-colors ${
         plan.popular
           ? "bg-[#193FD3] hover:bg-[#1535b8]"
-          : "bg-[#111111] hover:bg-[#2a2a2a]"
+          : "bg-[#193FD3] hover:bg-[#1535b8]"
       }`}
     >
       {plan.price === "Custom" ? "Contact Sales" : "Start Free Trial"}
@@ -277,5 +292,165 @@ const PricingCards = () => {
     </div>
   );
 };
+
+
+
+const testimonials = [
+  {
+    plan: "Growth Plan · 120 employees",
+    quote:
+      "We moved from a spreadsheet payroll nightmare to fully automated statutory compliance in under two weeks. The ROI was immediate.",
+    initial: "E",
+    name: "Emeka D.",
+    role: "Finance Director, Techbridge Solutions",
+    color: "bg-[#193FD3]",
+  },
+  {
+    plan: "Starter Plan · 30 employees",
+    quote:
+      "As a 30-person startup, we needed HR that just worked without a 6-month implementation. CephasHR was live in 3 days.",
+    initial: "A",
+    name: "Adaeze I.",
+    role: "CEO, Stackr Africa",
+    color: "bg-[#3fb6f5]",
+  },
+  {
+    plan: "Enterprise Plan · 600+ employees",
+    quote:
+      "The RBAC controls and immutable audit logs are exactly what our CBN regulatory requirements demanded. Nothing else came close.",
+    initial: "C",
+    name: "Chidi A.",
+    role: "Chief Compliance Officer, PrimeFin Nigeria",
+    color: "bg-[#111111]",
+  },
+];
+
+const stats = [
+  { value: "500+", label: "Companies onboarded" },
+  { value: "40,000+", label: "Employees managed" },
+  { value: "₦2.8B+", label: "Payroll processed monthly" },
+  { value: "4.9 / 5", label: "Average customer rating" },
+];
+
+const PriceCompare = () => {
+  return (
+    <div className="bg-[#f7f8fa] py-16">
+      <Wrapper>
+        <div className="mb-10 text-center">
+          <h2 className="text-2xl font-bold text-[#111111] sm:text-3xl">
+            Compare every feature,{" "}
+            <span className="text-[#193FD3]">side by side</span>
+          </h2>
+        </div>
+
+        {/* Testimonial cards */}
+        <div className="mb-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-gray-200 bg-white p-5"
+            >
+              <p className="mb-3 text-xs font-semibold text-[#193FD3]">
+                {t.plan}
+              </p>
+
+              <p className="mb-5 text-sm leading-relaxed text-[#333]">
+                "{t.quote}"
+              </p>
+
+              <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
+                <div
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white ${t.color}`}
+                >
+                  {t.initial}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-[#111111]">
+                    {t.name}
+                  </p>
+                  <p className="text-xs text-gray-400">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats bar */}
+        <div className="grid grid-cols-2 gap-8 rounded-2xl border border-gray-200 bg-white p-8 md:grid-cols-4">
+          {stats.map((stat, i) => (
+            <div key={i} className="text-center">
+              <p className="text-2xl font-bold text-[#193FD3] sm:text-3xl">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-xs text-gray-500">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </Wrapper>
+    </div>
+  );
+};
+
+const trustPoints = [
+  "14-day free trial",
+  "Cancel anytime",
+  "Data stays in Nigeria",
+  "NDPR compliant",
+];
+
+const TrialSection = () => {
+  return (
+    <div className="py-16">
+      <Wrapper>
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg, #1233CC 0%, #0F3CCF 15%, #0B44D2 30%, #074CD4 45%, #0596F1 70%, #0083EA 85%, #0089EC 100%)",
+          }}
+          className="rounded-[24px] px-8 py-14 text-center md:py-16"
+        >
+          <h2 className="mx-auto text-[54px] font-bold leading-tight text-white md:text-4xl">
+            Start your 14-day free trial today.
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
+            No credit card. No setup fees. Full access to every feature in
+            your chosen plan — ready in under 10 minutes.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <button className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100">
+              Start Free — No Credit Card
+            </button>
+
+            <button className="rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+              Book a Personalised Demo
+            </button>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {trustPoints.map((point, i) => (
+              <span
+                key={i}
+                className="flex items-center gap-1.5 text-xs text-white/80"
+              >
+<div className="flex items-center justify-center w-6 h-6 bg-white/60 rounded-full z-20">
+  <Check
+    size={14}
+    strokeWidth={4}
+    className="text-white"
+  />
+</div>
+                {point}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    </div>
+  );
+};
+
+
 
 export default Pricing
