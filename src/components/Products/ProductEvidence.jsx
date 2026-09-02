@@ -10,8 +10,8 @@ import overview from "../../assets/Overview.svg";
 
 const ProductEvidence = () => {
   return (
-    <div>
-      <div className="bg-white">
+    <div className="bg-white">
+      <div className="">
         <div className="mx-auto max-w-[1400px] px-4 pt-20">
           <OrganizationItem
             number="04"

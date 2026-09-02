@@ -9,7 +9,7 @@ import blue2 from "../../assets/rightcont.svg";
 
 const TimeSheets = () => {
   return (
-    <div className="bg-[#F7F7F9] pb-10">
+    <div className="bg-[#F7F7F9] mt-20  pb-10">
       <div className="mx-auto max-w-[1400px] px-4 pt-20">
         <OrganizationItem
           number="03"
@@ -22,7 +22,7 @@ const TimeSheets = () => {
           one automated financial engine.
         </span>
       </p>
-      <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-start justify-center gap-10 mt-20 max-w-[1300px] mx-auto ">
+      <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-start justify-center gap-10 mt-20 max-w-[1100px] mx-auto ">
         <div className="flex-1">
           <PillarCard
             width="600px"
@@ -91,7 +91,7 @@ const TimeSheets = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-start justify-center gap-10 mt-20 max-w-[1300px] mx-auto ">
+      <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-start justify-center gap-10 mt-20 max-w-[1100px] mx-auto ">
         <div className="flex-1">
           <PillarCard
             width="600px"
@@ -160,7 +160,7 @@ const TimeSheets = () => {
           />
         </div>
       </div>
-      <div className="bg-white shadow max-w-[1400px] mx-auto rounded-2xl xl:max-h-[401px] mt-20 relative">
+      <div className="bg-white shadow max-w-[1200px] mx-auto rounded-2xl xl:max-h-[401px] mt-20 relative">
         <img src={blue2} alt="" className="absolute top-0 left-0 " />
         <div className="gap-16 flex flex-col xl:flex xl:flex-row md:flex md:flex-col items-center py-10 max-w-[1350px] mx-auto px-10 ">
           <div className="flex-1 gap-4 flex flex-col">
@@ -196,12 +196,12 @@ const TimeSheets = () => {
             <img
               src={pay2}
               alt=""
-              className="absolute bottom-10 right-10 border-[#82CAF8] border-2 rounded-2xl"
+              className="absolute bottom-10 right-8 border-[#82CAF8] border-2 rounded-2xl"
             />
             <img
               src={blue}
               alt=""
-              className="absolute -bottom-15 xl:-right-22 "
+              className="absolute -bottom-12 xl:-right-9 "
             />
           </div>
         </div>
