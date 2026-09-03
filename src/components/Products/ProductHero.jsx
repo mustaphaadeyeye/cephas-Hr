@@ -12,6 +12,7 @@ import TimeSheets from "./TimeSheets";
 import ProductEvidence from "./ProductEvidence";
 import ProductNative from "./ProductNative";
 import FinalCTA from "./FinalCTA";
+import { motion } from "framer-motion";
 
 const ProductHero = () => {
   const organization = [
@@ -36,6 +37,14 @@ const ProductHero = () => {
       description: "Mobile Workforce Management",
     },
   ];
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
   return (
     <div>
       <Wrapper>
@@ -46,13 +55,27 @@ const ProductHero = () => {
           {/* Content */}
           <div className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center">
             {/* AI Badge */}
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-2 text-[9px] font-medium text-[#1744d8] sm:text-[10px]">
+            <motion.div
+              initial="hidden"
+              whileInView="visible" // ✅ matches the fadeUp key
+              viewport={{ once: false, amount: 0.3 }}
+              custom={0}
+              variants={fadeUp}
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-2 text-[9px] font-medium text-[#1744d8] sm:text-[10px]"
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-[#55bfff]" />
               AI-Powered Human Resource & Work Management Platform
-            </div>
+            </motion.div>
 
             {/* Heading */}
-            <h1 className="max-w-[914px]  text-[24px] font-bold leading-[1.08] tracking-[-1.8px] text-[#292929] sm:text-[48px] md:text-[58px] lg:text-[62px]">
+            <motion.h1
+              initial="hidden"
+              whileInView="visible" // ✅ matches the fadeUp key
+              viewport={{ once: false, amount: 0.3 }}
+              custom={0}
+              variants={fadeUp}
+              className="max-w-[914px]  text-[24px] font-bold leading-[1.08] tracking-[-1.8px] text-[#292929] sm:text-[48px] md:text-[58px] lg:text-[62px]"
+            >
               One Connected Workplace
               <br />
               Built for Admins, Loved by
@@ -60,17 +83,31 @@ const ProductHero = () => {
               <span className="inline-flex flex-wrap items-center justify-center gap-3">
                 <span>Employees</span>
               </span>
-            </h1>
+            </motion.h1>
 
             {/* Description */}
-            <p className="mt-5 max-w-[700px] text-[11px] leading-[2] text-[#444] sm:text-xs md:text-[18px]">
+            <motion.p
+              initial="hidden"
+              whileInView="visible" // ✅ matches the fadeUp key
+              viewport={{ once: false, amount: 0.3 }}
+              custom={0}
+              variants={fadeUp}
+              className="mt-5 max-w-[700px] text-[11px] leading-[2] text-[#444] sm:text-xs md:text-[18px]"
+            >
               From hiring and automated payroll to self-service requests and
               daily productivity—Cephas HR empowers operations while giving
               employees complete control over their work life.
-            </p>
+            </motion.p>
 
             {/* CTA */}
-            <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-row items-center xl:gap-10 gap-2 justify-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible" // ✅ matches the fadeUp key
+              viewport={{ once: false, amount: 0.3 }}
+              custom={0}
+              variants={fadeUp}
+              className="flex flex-col xl:flex xl:flex-row md:flex md:flex-row items-center xl:gap-10 gap-2 justify-center"
+            >
               <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
                 Book an Interactive Demo
               </Button>
@@ -83,8 +120,15 @@ const ProductHero = () => {
                 />
                 Watch Platform Overview (2 min)
               </Button>
-            </div>
-            <div className="flex items-center xl:gap-8 gap-14 mt-10 justify-center">
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible" // ✅ matches the fadeUp key
+              viewport={{ once: false, amount: 0.3 }}
+              custom={0}
+              variants={fadeUp}
+              className="flex items-center xl:gap-8 gap-14 mt-10 justify-center"
+            >
               <div className="flex xl:-space-x-2 -space-x-3">
                 <img src={img} alt="" />
                 <img src={image1} alt="" />
@@ -95,7 +139,7 @@ const ProductHero = () => {
               <div className="inline-flex items-center gap-2 rounded-full border border-[#CDEAFC] bg-[#CDEAFC] px-8 py-2 text-[9px] font-medium text-[#1744d8] sm:text-[10px]">
                 Trusted by 500+ teams across Africa
               </div>
-            </div>
+            </motion.div>
             {/* {organization} */}
             <div className="mt-20 xl:leading-16 ">
               <p className="xl:text-[54px] text-[24] font-bold text-nowrap">
@@ -113,7 +157,12 @@ const ProductHero = () => {
           </div>
           <div className="grid grid-cols-2 xl:grid-cols-5 justify-center items-center gap-10 mt-14 sm:flex-row sm:flex-wrap sm:gap-10 lg:flex-nowrap lg:gap-14 text-left">
             {organization.map((items, index) => (
-              <div
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                custom={index}
+                variants={fadeUp}
                 key={index}
                 className="flex flex-col gap-4 sm:w-[45%] lg:w-[150px]"
               >
@@ -121,7 +170,7 @@ const ProductHero = () => {
                   {items.title}
                 </p>
                 <p className="text-[16px]">{items.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>

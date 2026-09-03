@@ -4,13 +4,30 @@ import PillarCard from "./Features/FeaturesCard";
 import manage from "../../assets/management.svg";
 import people from "../../assets/dashboard.svg";
 import Overlay from "../../assets/overlay.svg";
+import { motion } from "framer-motion";
 
 const ProductGovernance = () => {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
+
   return (
     <div className="bg-[#F7F7F9]">
-      <div className="mx-auto max-w-[1400px] px-4 pt-20">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        custom={0}
+        variants={fadeUp}
+        className="mx-auto max-w-[1400px] px-4 pt-20"
+      >
         <OrganizationItem number="01" label="People,Lifestyle & Governance" />
-      </div>
+      </motion.div>
       <p className="mx-auto max-w-[800px] px-4 text-center md:text-[37px] text-[20px]  font-medium leading-[1.4] text-[#444] ">
         Every employee record, workflow and policy{" "}
         <span className=" bg-[radial-gradient(50%_50%_at_50%_50%,_#58B9F6_0%,_#1233CC_100%)] bg-clip-text text-transparent ">
