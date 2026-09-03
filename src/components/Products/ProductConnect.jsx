@@ -4,7 +4,7 @@ import PillarCard from "./Features/FeaturesCard";
 import produtt from "../../assets/product.svg";
 import cardimg from "../../assets/card.svg";
 import actimg from "../../assets/activity.svg";
-import Cad from "../../assets/Card2.svg";
+import Cad from "../../assets/card2.svg";
 import Cadd from "../../assets/Card3.svg";
 import calendar from "../../assets/Calendar.svg";
 

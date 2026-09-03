@@ -1,5 +1,5 @@
 import ProductHero from "../components/Products/ProductHero";
-import Wrapper from "../components/Wrapper";
+
 import Footer from "../components/Footer";
 
 const Product = () => {

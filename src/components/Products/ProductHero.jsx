@@ -7,7 +7,9 @@ import image2 from "../../assets/img3.svg";
 import image3 from "../../assets/img4.svg";
 import image4 from "../../assets/img5.svg";
 import ProductGovernance from "./ProductGovernance";
-import ProductConnect from "./ProductConnect";
+
+
+import ProductConnect from "./ProductConnect"
 import TimeSheets from "./TimeSheets";
 import ProductEvidence from "./ProductEvidence";
 import ProductNative from "./ProductNative";
