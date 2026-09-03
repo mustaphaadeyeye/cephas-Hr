@@ -12,6 +12,11 @@ import AnalyticsImg from "../assets/analytical.png"
 import PayrollImg from "../assets/payroll.png"
 import { CircleDollarSign, Users, Sparkles, Wallet, Check } from "lucide-react";
 import Footer from "../components/Footer";
+import img from "../assets/img.svg";
+import image1 from "../assets/img2.svg";
+import image2 from "../assets/img3.svg";
+import image3 from "../assets/img4.svg";
+import image4 from "../assets/img5.svg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 35 },
@@ -118,11 +123,11 @@ const HomeHero = () => {
 
             {/* Avatars */}
             <span className="flex -space-x-2">
-              <span className="h-6 w-6 rounded-full border-2 border-white bg-[#e8b58c] sm:h-8 sm:w-8" />
-              <span className="h-6 w-6 rounded-full border-2 border-white bg-[#6d829b] sm:h-8 sm:w-8" />
-              <span className="h-6 w-6 rounded-full border-2 border-white bg-[#d9a47e] sm:h-8 sm:w-8" />
-              <span className="h-6 w-6 rounded-full border-2 border-white bg-[#a77b65] sm:h-8 sm:w-8" />
-              <span className="h-6 w-6 rounded-full border-2 border-white bg-[#607d62] sm:h-8 sm:w-8" />
+              <img src={img} alt="" />
+                              <img src={image1} alt="" />
+                              <img src={image2} alt="" />
+                              <img src={image3} alt="" />
+                              <img src={image4} alt="" />
             </span>
 
             <span>Retire.</span>
@@ -369,9 +374,9 @@ const OverviewSection = () => {
     >
       <Wrapper>
         <h2 className="mb-10 text-center text-3xl font-bold text-[#272727] sm:text-4xl md:text-5xl lg:text-[54px]">
-          Overview{" "}
+          Overview of{" "}
           <span className="bg-gradient-to-r from-[#58B9F6] to-[#1233CC] bg-clip-text text-transparent">
-            Major Feature
+            Major Features
           </span>
         </h2>
 
