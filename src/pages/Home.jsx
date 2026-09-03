@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Wrapper from "../components/Wrapper";
 import Button from "../components/Button";
 import ChrImg from "../assets/anochrcep.png"
@@ -11,12 +12,29 @@ import AnalyticsImg from "../assets/analytical.png"
 import PayrollImg from "../assets/payroll.png"
 import { CircleDollarSign, Users, Sparkles, Wallet, Check } from "lucide-react";
 import Footer from "../components/Footer";
+import img from "../assets/africa1.jpg";
+import image1 from "../assets/africa2.jpg";
+import image2 from "../assets/africa3.jpg";
+import image3 from "../assets/africa4.jpg";
+import image4 from "../assets/africa5.webp";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+const viewport = { once: true, amount: 0.15 };
 
 const Home = () => {
   return (
     <div>
       <Wrapper>
-        <div>
+        <div className="pt-[78px]">
           <HomeHero />
           <ImageSection />
           <CardSection />
@@ -66,93 +84,200 @@ const features = [
   },
 ];
 
+
+
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const itemFadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const avatarPop = {
+  hidden: { opacity: 0, scale: 0.4, y: 10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 260, damping: 18 },
+  },
+};
+
+const FloatingIcon = ({ className, duration, delay = 0, distance = 18 }) => (
+  <motion.div
+    className={className}
+    animate={{ y: [0, -distance, 0], rotate: [0, 6, 0] }}
+    transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
+  />
+);
+
+const marqueeItems = [
+  "Employee Management",
+  "Time Tracking",
+  "Payroll",
+  "Performance",
+  "Attendance",
+  "Task Management",
+];
+
 const HomeHero = () => {
+  const avatars = [img, image1, image2, image3, image4];
+
   return (
-    <section className="relative mt-8 overflow-hidden rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={fadeIn}
+      className="relative mt-8 overflow-hidden rounded-[28px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:rounded-[48px] sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16"
+    >
+      <FloatingIcon
+        className="pointer-events-none absolute left-[6%] top-[18%] h-10 w-10 rounded-2xl border border-[#dcecff] bg-white/60 backdrop-blur-sm"
+        duration={5}
+      />
+      <FloatingIcon
+        className="pointer-events-none absolute right-[8%] top-[28%] h-14 w-14 rounded-full border border-[#dcecff] bg-white/60 backdrop-blur-sm"
+        duration={6.5}
+        delay={0.6}
+      />
+      <FloatingIcon
+        className="pointer-events-none absolute left-[10%] bottom-[16%] h-8 w-8 rounded-xl border border-[#dcecff] bg-white/60 backdrop-blur-sm"
+        duration={4.5}
+        delay={1.2}
+        distance={12}
+      />
 
-      {/* Second / Inner Border */}
-      <div className="absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
+      <div className="hidden sm:block absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center">
-
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+        variants={containerStagger}
+        className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center"
+      >
         {/* AI Badge */}
-        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-2 text-[9px] font-medium text-[#1744d8] sm:text-[10px]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#55bfff]" />
+        <motion.div
+          variants={itemFadeUp}
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-3 py-1.5 text-[10px] font-medium text-[#1744d8] sm:px-4 sm:py-2 sm:text-[10px]"
+        >
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-[#55bfff]"
+            animate={{ scale: [1, 1.4, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
           AI-Powered Human Resource & Work Management Platform
-        </div>
+        </motion.div>
 
         {/* Heading */}
-        <h1 className="max-w-[750px] text-[38px] font-bold leading-[1.08] tracking-[-1.8px] text-[#292929] sm:text-[48px] md:text-[58px] lg:text-[62px]">
+        <motion.h1
+          variants={itemFadeUp}
+          className="max-w-[750px] text-[32px] font-bold leading-[1.12] tracking-[-1.2px] text-[#292929] sm:text-[38px] sm:leading-[1.08] sm:tracking-[-1.8px] md:text-[58px] lg:text-[62px]"
+        >
           Streamline Your Entire
           <br />
           People Operations from
           <br />
 
-          <span className="inline-flex flex-wrap items-center justify-center gap-3">
+          <span className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <span>Hire</span>
 
-            {/* Avatars */}
-            <span className="flex -space-x-2">
-              <span className="h-8 w-8 rounded-full border-2 border-white bg-[#e8b58c]" />
-              <span className="h-8 w-8 rounded-full border-2 border-white bg-[#6d829b]" />
-              <span className="h-8 w-8 rounded-full border-2 border-white bg-[#d9a47e]" />
-              <span className="h-8 w-8 rounded-full border-2 border-white bg-[#a77b65]" />
-              <span className="h-8 w-8 rounded-full border-2 border-white bg-[#607d62]" />
-            </span>
+            {/* Avatar stack — African corporate professional photos, floating */}
+            <motion.span variants={containerStagger} className="flex -space-x-2">
+              {avatars.map((src, i) => (
+                <motion.img
+                  key={i}
+                  src={src}
+                  alt=""
+                  variants={avatarPop}
+                  animate={{ y: [0, i % 2 === 0 ? -4 : 4, 0] }}
+                  transition={{
+                    y: { duration: 2.5 + i * 0.3, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                  whileHover={{ y: -8, scale: 1.15, zIndex: 10 }}
+                  className="relative h-10 w-10 rounded-full object-cover ring-2 ring-white sm:h-12 sm:w-12"
+                />
+              ))}
+            </motion.span>
 
             <span>Retire.</span>
           </span>
-        </h1>
+        </motion.h1>
 
         {/* Description */}
-        <p className="mt-5 max-w-[700px] text-[11px] leading-[2] text-[#444] sm:text-xs md:text-[18px]">
+        <motion.p
+          variants={itemFadeUp}
+          className="mt-5 max-w-[700px] text-sm leading-[1.7] text-[#444] sm:text-xs sm:leading-[2] md:text-[18px]"
+        >
           Manage People. Organize Work. Track Time. Control Costs. Improve
           Performance. CepahsHR is an intelligent, all-in-one HR and Work
           Management platform that connects employees, projects, tasks,
           calendars, attendance, time tracking, expenses, payroll and
           performance in one seamless ecosystem.
-        </p>
+        </motion.p>
 
         {/* CTA */}
-        <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
-          Book a Demo
-        </Button>
+        <motion.div variants={itemFadeUp}>
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+            <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
+              Book a Demo
+            </Button>
+          </motion.div>
+        </motion.div>
 
-      </div>
-    </section>
+        {/* Infinite moving marquee — text only, no images */}
+        <motion.div variants={itemFadeUp} className="mt-10 w-full overflow-hidden">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-[#8a93a6]">
+            Everything your team needs, in one place
+          </p>
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <motion.div
+              className="flex w-max items-center gap-4"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              {[...marqueeItems, ...marqueeItems].map((label, i) => (
+                <span
+                  key={i}
+                  className="flex shrink-0 items-center rounded-full border border-[#e2efff] bg-[#f7fbff] px-4 py-2 text-xs font-medium text-[#1744d8] sm:text-sm"
+                >
+                  {label}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
 const ImageSection = () => {
   return (
-    <div className="mt-6 ">
-      <div className="flex justify-center">
-        <img src={ChrImg} alt="HR platform" />
+    <motion.div className="mt-6 " initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
+      <div className="flex justify-center px-2">
+        <motion.img src={ChrImg} alt="HR platform" className="w-full h-auto lg:w-auto" />
       </div>
-
-      <div className="mt-8">
-        <p className="font-medium text-[31px] text-[#272727] text-center">
-          Trusted by forward-thinking teams across Africa
-        </p>
-        <div className="flex justify-center gap-16 mt-4 mb-5 ">
-          <img src={OneImg} alt="" />
-          <img src={TwoImg} alt="" />
-          <img src={ThreeImg} alt="" />
-          <img src={FourImg} alt="" />
-        </div>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 
 const CardSection = () => {
   return (
-    <section className="mt-14 w-full">
+    <motion.section className="mt-14 w-full" initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
 
         {/* Card 1 */}
-        <div className="relative min-h-[300px] overflow-hidden rounded-[16px] bg-[#f7f7f8] px-5 pt-6 sm:px-7 sm:pt-7">
+        <div className="relative min-h-[220px] overflow-hidden rounded-[16px] bg-[#f7f7f8] px-5 pt-6 sm:min-h-[300px] sm:px-7 sm:pt-7">
           <div className="">
             <h3 className="text-[18px] font-bold leading-[1.25]  text-[#272727] md:text-[31px]">
               Automate your entire employee
@@ -160,7 +285,7 @@ const CardSection = () => {
               lifecycle seamlessly
             </h3>
 
-            <p className="mt-2  text-[9px] leading-[1.5] text-[#272727] md:text-[18px]">
+            <p className="mt-2 text-sm leading-[1.5] text-[#272727] md:text-[18px]">
               Streamline hiring, day-one onboarding, leave requests,
               and asset management in one unified workspace.
             </p>
@@ -169,12 +294,12 @@ const CardSection = () => {
           <img
             src={EmployeeImg}
             alt="Employee management dashboard"
-
+            className="mt-4 w-full h-auto lg:w-auto"
           />
         </div>
 
         {/* Card 2 */}
-        <div className="relative min-h-[300px] overflow-hidden rounded-[16px] bg-[#f7f7f8] px-5 pt-6 sm:px-7 sm:pt-7">
+        <div className="relative min-h-[220px] overflow-hidden rounded-[16px] bg-[#f7f7f8] px-5 pt-6 sm:min-h-[300px] sm:px-7 sm:pt-7">
           <div>
             <h3 className="text-[18px] font-bold leading-[1.25]  text-[#272727] sm:text-[31px]">
               Real-time analytics to optimize
@@ -182,7 +307,7 @@ const CardSection = () => {
               workforce performance
             </h3>
 
-            <p className="mt-2 mb-2 text-[9px]  text-[#272727] sm:text-[18px]">
+            <p className="mt-2 mb-2 text-sm text-[#272727] sm:text-[18px]">
               Track team productivity, review OKRs, and uncover
               retention trends with automated AI-driven reporting.
             </p>
@@ -191,41 +316,43 @@ const CardSection = () => {
           <img
             src={AnalyticsImg}
             alt="Workforce analytics dashboard"
-
+            className="mt-4 w-full h-auto lg:w-auto"
           />
         </div>
 
         {/* Card 3 */}
         <div className=" overflow-hidden rounded-[16px] bg-[#f7f7f8] px-5 pt-6 md:col-span-2 sm:px-7 sm:pt-7">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center gap-6 lg:gap-0">
             {/* Text */}
             <div>
-              <h3 className="text-[18px] font-bold leading-[1.32]  text-[#272727] md:text-[31px]">
+              <h3 className="text-[18px] font-bold leading-[1.32] text-center lg:text-left  text-[#272727] md:text-[31px]">
                 Zero-error payroll, automated
-                <br />
-                expenses, and complete
-                <br />
-                compliance
+                <br className="hidden lg:block" />
+                {" "}expenses, and complete
+                <br className="hidden lg:block" />
+                {" "}compliance
               </h3>
 
-              <p className="mt-2  text-[9px] leading-[1.5] text-[#272727] md:text-[18px]">
+              <p className="mt-2 text-sm text-center lg:text-left leading-[1.5] text-[#272727] md:text-[18px]">
                 Run statutory-compliant payroll runs in minutes,
                 approve instant expense claims, and empower
                 employees with built-in digital wallets and salary
                 advances.
               </p>
 
-              <button className="mt-4 rounded-full bg-[#0596F1] px-5 py-4  text-[9px] font-bold text-white transition hover:bg-[#078bd3] md:text-[18px] cursor-pointer">
-                Explore Payroll & FinTech
-              </button>
+              <div className="flex justify-center lg:justify-start">
+                <button className="mt-4 rounded-full bg-[#0596F1] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#078bd3] sm:py-4 md:text-[18px] cursor-pointer">
+                  Explore Payroll & FinTech
+                </button>
+              </div>
             </div>
 
-            <div className="w-[1500px]">
+            <div className="w-full lg:w-[1500px]">
               {/* Dashboard image */}
               <img
                 src={PayrollImg}
                 alt="Payroll and fintech dashboard"
-
+                className="w-full h-auto lg:w-auto"
               />
             </div>
           </div>
@@ -234,14 +361,14 @@ const CardSection = () => {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 
 const WhySection = () => {
   return (
-    <div className="w-full bg-white px-6 py-16">
-      <h2 className="text-center text-[54px] font-bold text-[#272727] mb-8">
+    <motion.div className="w-full bg-white px-6 py-16" initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
+      <h2 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold text-[#272727] mb-8">
         Why <span className="bg-gradient-to-r from-[#58B9F6] to-[#1233CC] bg-clip-text text-transparent">
           CephasHR?
         </span>
@@ -258,7 +385,7 @@ const WhySection = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -330,13 +457,22 @@ const overviewFeatures = [
 
 
 const OverviewSection = () => {
+  const [showMore, setShowMore] = useState(false);
+
   return (
-    <div className="w-full bg-[#f5f7fb] px-6 py-16">
+    <motion.div
+      className="w-full bg-[#f5f7fb] px-6 py-16"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={fadeUp}
+      transition={{ duration: 0.6 }}
+    >
       <Wrapper>
-        <h2 className="mb-10 text-center text-[54px] font-bold text-[#272727]">
-          Overview{" "}
+        <h2 className="mb-10 text-center text-3xl font-bold text-[#272727] sm:text-4xl md:text-5xl lg:text-[54px]">
+          Overview of{" "}
           <span className="bg-gradient-to-r from-[#58B9F6] to-[#1233CC] bg-clip-text text-transparent">
-            Major Feature
+            Major Features
           </span>
         </h2>
 
@@ -345,41 +481,50 @@ const OverviewSection = () => {
             ({ number, title, description }, index) => (
               <div
                 key={number}
-                className={`flex h-[152px] w-full max-w-[555px] gap-4 rounded-[20px] px-10 py-5 ${
+                className={`flex h-auto w-full max-w-[555px] gap-4 rounded-[20px] px-6 py-5 sm:px-10 lg:h-[152px] ${
                   index % 2 === 0
                     ? "bg-[#eef3fd]"
                     : "bg-[#e9eaf9]"
+                } ${
+                  index >= 6 && !showMore
+                    ? "hidden lg:flex"
+                    : "flex"
                 }`}
               >
-              
-
-                <div className="flex items-center gap-3 ">
-
+                <div className="flex items-center gap-3">
                   <div>
-                    <h1 className="shrink-0 text-[48px] font-bold text-blue-500">
-                  {number}
-                </h1>
-
+                    <h1 className="shrink-0 text-3xl font-bold text-blue-500 sm:text-4xl lg:text-[48px]">
+                      {number}
+                    </h1>
                   </div>
 
                   <div>
+                    <h3 className="mb-1 text-[16px] font-bold text-[#272727] sm:text-[18px]">
+                      {title}
+                    </h3>
 
-                  <h3 className="mb-1 text-[18px] font-bold text-gray-[#272727]">
-                    {title}
-                  </h3>
-
-                  <p className="text-[17px]  font-normal text-[#272727]">
-                    {description}
-                  </p>
+                    <p className="text-sm font-normal text-[#272727] sm:text-[17px]">
+                      {description}
+                    </p>
                   </div>
-
                 </div>
               </div>
             )
           )}
         </div>
 
-        <div className="mt-8 text-center">
+        {/* View More / View Less */}
+        <div className="mt-8 text-center lg:hidden">
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="text-sm font-medium text-blue-600 underline underline-offset-2"
+          >
+            {showMore ? "View Less" : "View More"}
+          </button>
+        </div>
+
+        {/* Desktop View Details */}
+        <div className="mt-8 hidden text-center lg:block">
           <a
             href="#"
             className="text-sm font-medium text-blue-600 underline underline-offset-2"
@@ -388,9 +533,11 @@ const OverviewSection = () => {
           </a>
         </div>
       </Wrapper>
-    </div>
+    </motion.div>
   );
 };
+
+
 
 const systemSteps = [
   {
@@ -415,11 +562,11 @@ const systemSteps = [
  
 const SystemSection = () => {
   return (
-    <div className="w-full bg-white px-6">
-      <h2 className="text-center text-[54px] font-bold text-[#272727] mb-2">
+    <motion.div className="w-full bg-white px-6" initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
+      <h2 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold text-[#272727] mb-2">
         How the <span className="text-blue-500">System</span> Works
       </h2>
-      <p className="text-center text-[18px] text-[#272727] mb-14">
+      <p className="text-center text-sm sm:text-base md:text-[18px] text-[#272727] mb-14">
         Three simple steps from setup to strategic decisions.
       </p>
  
@@ -431,18 +578,18 @@ const SystemSection = () => {
               <div className="hidden sm:block absolute top-12 left-1/2 w-full h-px border-t border-solid border-blue-200" />
             )}
  
-            <div className="relative z-10 w-[104px] h-[104px] rounded-full bg-blue-50 flex items-center justify-center mb-5">
-              <span className="text-[18px] font-bold text-[#0596F1]">{step}</span>
+            <div className="relative z-10 w-[88px] h-[88px] sm:w-[104px] sm:h-[104px] rounded-full bg-blue-50 flex items-center justify-center mb-5">
+              <span className="text-sm sm:text-[18px] font-bold text-[#0596F1]">{step}</span>
             </div>
  
-            <h3 className="text-[26px] font-bold text-[#272727] mb-2">{title}</h3>
-            <p className="text-[18px] font-normal text-gray-500 leading-relaxed">
+            <h3 className="text-xl sm:text-2xl md:text-[26px] font-bold text-[#272727] mb-2">{title}</h3>
+            <p className="text-sm sm:text-base md:text-[18px] font-normal text-gray-500 leading-relaxed">
               {description}
             </p>
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -476,16 +623,16 @@ const industryItems = [
 
 const IndustrySection = () => {
   return (
-    <div className="w-full bg-white px-6 py-16 mt-5">
+    <motion.div className="w-full bg-white px-6 py-16 mt-5" initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
     
-        <h2 className="mb-2 text-center text-[50px] font-bold text-[#272727]">
+        <h2 className="mb-2 text-center text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-bold text-[#272727]">
           Built for Your{" "}
           <span className="bg-gradient-to-r from-[#58B9F6] to-[#1233CC] bg-clip-text text-transparent">
             Industry & Scale
           </span>
         </h2>
 
-        <p className="mb-10 text-center text-[17px] font-normal text-[#272727]">
+        <p className="mb-10 text-center text-sm sm:text-base lg:text-[17px] font-normal text-[#272727]">
           Purpose-built workflows for the sectors and company sizes that need
           them most.
         </p>
@@ -494,7 +641,7 @@ const IndustrySection = () => {
           {industryItems.map(({ number, title, description }, index) => (
             <div
               key={number}
-              className={`flex h-[152px] w-full max-w-[555px] gap-4 rounded-[20px] px-10 py-5 ${
+              className={`flex h-auto w-full max-w-[555px] gap-4 rounded-[20px] px-6 py-5 sm:px-10 lg:h-[152px] ${
                 index % 2 === 0
                   ? "bg-[#eef3fd]"
                   : "bg-[#e9eaf9]"
@@ -502,17 +649,17 @@ const IndustrySection = () => {
             >
               <div className="flex items-center gap-3">
                 <div>
-                  <h1 className="shrink-0 text-[48px] font-bold text-blue-500">
+                  <h1 className="shrink-0 text-3xl sm:text-4xl lg:text-[48px] font-bold text-blue-500">
                     {number}
                   </h1>
                 </div>
 
                 <div>
-                  <h3 className="mb-1 text-[18px] font-bold text-[#272727]">
+                  <h3 className="mb-1 text-[16px] sm:text-[18px] font-bold text-[#272727]">
                     {title}
                   </h3>
 
-                  <p className="text-[17px] font-normal text-[#272727]">
+                  <p className="text-sm sm:text-[17px] font-normal text-[#272727]">
                     {description}
                   </p>
                 </div>
@@ -521,7 +668,7 @@ const IndustrySection = () => {
           ))}
         </div>
       
-    </div>
+    </motion.div>
   );
 };
 
@@ -547,27 +694,27 @@ const testimonials = [
 
 const TestimonialSection = () => {
   return (
-    <div className="w-full bg-[#f5f7fb] px-6 py-16">
+    <motion.div className="w-full bg-[#f5f7fb] px-6 py-16" initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
      
-        <h2 className="mb-10 text-center text-[54px] font-bold text-[#272727]">
+        <h2 className="mb-10 text-center text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold text-[#272727]">
           Customer{" "}
           <span className="bg-gradient-to-r from-[#58B9F6] to-[#1233CC] bg-clip-text text-transparent">
             Testimonial
           </span>
         </h2>
 
-        <div className=" flex justify-center gap-10">
+        <div className=" flex flex-col lg:flex-row justify-center items-stretch gap-6 lg:gap-10">
           {testimonials.map(
             ({ initials, avatarBg, quote, name, role }) => (
               <div
                 key={name}
-                className="h-[346px] w-full max-w-[518px] rounded-[20px] bg-white px-8 py-8 shadow-sm"
+                className="h-auto w-full max-w-[518px] mx-auto rounded-[20px] bg-white px-6 py-7 shadow-sm sm:px-8 sm:py-8 lg:h-[346px]"
               >
-                <span className="font-serif text-[48px] leading-none text-[#58B9F6]">
+                <span className="font-serif text-4xl sm:text-[48px] leading-none text-[#58B9F6]">
                   &ldquo;
                 </span>
 
-                <p className="mb-8 text-[17px] font-normal leading-relaxed text-[#272727]">
+                <p className="mb-8 text-sm sm:text-[17px] font-normal leading-relaxed text-[#272727]">
                   {quote}
                 </p>
 
@@ -593,13 +740,9 @@ const TestimonialSection = () => {
           )}
         </div>
      
-    </div>
+    </motion.div>
   );
 };
-
-
-
-
 
 const NewSection = () => {
   return (
@@ -619,7 +762,7 @@ const AnotherSection = () => {
   return (
     <div>
       <Wrapper>
-        <TeamSecion/>
+        {/* <TeamSecion/> */}
         <ModernizeSection/>
        
       </Wrapper>
@@ -674,16 +817,16 @@ const plans = [
 
 const TeamSecion = () => {
   return (
-    <div className="w-full bg-white px-6 py-16">
+    <motion.div className="w-full bg-white px-6 py-16" initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
       
-        <h2 className="mb-2 text-center text-[54px] font-bold text-[#272727]">
+        <h2 className="mb-2 text-center text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold text-[#272727]">
           Transparent plans that{" "}
           <span className="bg-gradient-to-r from-[#58B9F6] to-[#1233CC] bg-clip-text text-transparent">
             Grow with Your Team
           </span>
         </h2>
 
-        <p className="mb-12 text-center text-[17px] font-normal text-[#272727]">
+        <p className="mb-12 text-center text-sm sm:text-base lg:text-[17px] font-normal text-[#272727]">
           Simple per-employee pricing with no hidden fees or surprise
           implementation costs.
         </p>
@@ -700,7 +843,7 @@ const TeamSecion = () => {
             }) => (
               <div
                 key={name}
-                className={`relative h-[538px] w-full max-w-[385px] rounded-[20px] px-6 py-8 ${
+                className={`relative h-auto w-full max-w-[385px] mx-auto rounded-[20px] px-6 py-8 lg:h-[538px] ${
                   featured
                     ? "bg-[#193FD3] lg:-mt-4 lg:pb-12"
                     : "bg-[#f7f7f8]"
@@ -788,21 +931,26 @@ const TeamSecion = () => {
           )}
         </div>
     
-    </div>
+    </motion.div>
   );
 };
 
 
 const ModernizeSection = () => {
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={fadeUp}
+      transition={{ duration: 0.7 }}
       style={{
         background:
           "linear-gradient(135deg, #1233CC 0%, #0F3CCF 15%, #0B44D2 30%, #074CD4 45%, #0596F1 70%, #0083EA 85%, #0089EC 100%)",
       }}
-      className="rounded-[20px] px-8 py-14 md:py-16 text-center  mb-5  mx-auto"
+      className="rounded-[20px] px-6 py-12 sm:px-8 sm:py-14 md:py-16 text-center  mb-5  mx-auto"
     >
-      <h2 className="text-white text-3xl md:text-[54px] font-bold leading-tight max-w-2xl mx-auto">
+      <h2 className="text-white text-2xl sm:text-3xl md:text-[54px] font-bold leading-tight max-w-2xl mx-auto">
         Ready to modernize your people operations?
       </h2>
 
@@ -816,15 +964,15 @@ const ModernizeSection = () => {
         <button className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
           Schedule Your Live Demo
         </button>
-
-        <a
+      <a
+        
           href="#"
           className="text-white text-sm font-medium  hover:text-white/80 transition-colors"
         >
           Talk to an HR Solutions Specialist
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

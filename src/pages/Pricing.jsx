@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Wrapper from '../components/Wrapper'
 import { Check, X } from "lucide-react";
 import PriceFeature from "./PriceFeature";
 import PriceFaq from "./PriceFaq";
 import Footer from "../components/Footer";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
 const Pricing = () => {
   return (
-    <div>
+    <div className="pt-[78px]">
         <PricingHome/>
         <PricingCards/>
         <PriceFeature/>
@@ -25,10 +31,15 @@ const PricingHome = () => {
     return (
         <div>
             <Wrapper>
-                 <section className="relative mt-8 overflow-hidden rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
+                 <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={fadeUp}
+          className="relative mt-8 overflow-hidden rounded-[32px] sm:rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
 
-      {/* Second / Inner Border */}
-      <div className="absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
+      {/* Second / Inner Border - hidden on mobile, unchanged from sm: up */}
+      <div className="hidden sm:block absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center">
@@ -40,20 +51,20 @@ const PricingHome = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="max-w-[750px] text-[38px] font-bold leading-[1.08] tracking-[-1.8px] text-[#292929] sm:text-[48px] md:text-[58px] lg:text-[62px]">
+        <h1 className="max-w-[750px] text-[32px] font-bold leading-[1.1] tracking-[-1.2px] text-[#292929] sm:text-[48px] sm:leading-[1.08] sm:tracking-[-1.8px] md:text-[58px] lg:text-[62px]">
          Pay for what you use. Nothing more.
         </h1>
 
         {/* Description */}
-        <p className="mt-5 max-w-[700px] text-[11px] leading-[2] text-[#444] sm:text-xs md:text-[18px]">
+        <p className="mt-5 max-w-[700px] text-[13px] leading-[1.8] text-[#444] sm:text-xs sm:leading-[2] md:text-[18px]">
         Per-employee pricing that scales with your team. No hidden setup fees, no module paywalls, no long-term lock-ins.
         </p>
 
         {/* Billing Toggle */}
-        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-gray-100 p-1.5">
+        <div className="mt-6 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-gray-100 p-1.5">
           <button
             onClick={() => setBilling("monthly")}
-            className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
+            className={`rounded-full px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold transition-colors ${
               billing === "monthly"
                 ? "bg-white text-[#111111] shadow-sm"
                 : "text-gray-400"
@@ -64,21 +75,21 @@ const PricingHome = () => {
 
           <button
             onClick={() => setBilling("annual")}
-            className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
+            className={`flex items-center gap-1.5 sm:gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold transition-colors ${
               billing === "annual"
                 ? "bg-white text-[#111111] shadow-sm"
                 : "text-gray-400"
             }`}
           >
             Annual
-            <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-600">
+            <span className="rounded-full bg-green-100 px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-green-600">
               Save 17%
             </span>
           </button>
         </div>
 
       </div>
-    </section>
+    </motion.section>
             </Wrapper>
         </div>
     )
@@ -177,14 +188,14 @@ const trustItems = [
 
 const PricingCard = ({ plan }) => (
   <div
-    className={`flex flex-col rounded-2xl bg-white p-6 ${
+    className={`flex flex-col rounded-2xl bg-white p-5 sm:p-6 ${
       plan.popular
         ? "border-2 border-[#193FD3]"
         : "border border-gray-200"
     }`}
   >
     {/* Header */}
-    <div className="mb-4 flex items-start justify-between">
+    <div className="mb-4 flex items-start justify-between gap-2">
       <div className="flex items-center gap-3">
         <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#eef2ff] text-sm font-semibold text-[#193FD3]">
           {plan.letter}
@@ -198,7 +209,7 @@ const PricingCard = ({ plan }) => (
       </div>
 
       {plan.popular && (
-        <span className="rounded-full bg-[#193FD3] px-3 py-1 text-[11px] font-semibold text-white">
+        <span className="shrink-0 rounded-full bg-[#193FD3] px-3 py-1 text-[10px] sm:text-[11px] font-semibold text-white">
           Most Popular
         </span>
       )}
@@ -210,8 +221,8 @@ const PricingCard = ({ plan }) => (
     <div className="mb-5 flex items-center gap-2">
       <h1 className="text-3xl font-bold text-[#111111]">{plan.price}</h1>
       <div>
-        <p className="text-[14px] font-normal text-gray-400">{plan.priceNote}</p>
-      <span className="text-[14px] font-normal text-gray-400">{plan.priceMonth}</span>
+        <p className="text-[13px] sm:text-[14px] font-normal text-gray-400">{plan.priceNote}</p>
+      <span className="text-[13px] sm:text-[14px] font-normal text-gray-400">{plan.priceMonth}</span>
       </div>
       
     </div>
@@ -271,16 +282,21 @@ const PricingCard = ({ plan }) => (
 
 const PricingCards = () => {
   return (
-    <div className="bg-white py-16">
+    <div className="bg-white py-10 sm:py-16">
       <Wrapper>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+          className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {plans.map((plan) => (
             <PricingCard key={plan.name} plan={plan} />
           ))}
-        </div>
+        </motion.div>
 
         {/* Trust bar */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-gray-100 pt-8 text-xs text-gray-500">
+        <div className="mt-10 flex flex-col items-center gap-y-3 border-t border-gray-100 pt-8 text-xs text-gray-500 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8">
           {trustItems.map((item, i) => (
             <span key={i} className="flex items-center gap-2">
               <Check size={14} className="text-[#193FD3]" />
@@ -334,10 +350,15 @@ const stats = [
 
 const PriceCompare = () => {
   return (
-    <div className="bg-[#f7f8fa] py-16">
+    <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.1 }}
+    variants={fadeUp}
+    className="bg-[#f7f8fa] py-10 sm:py-16">
       <Wrapper>
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-[#111111] sm:text-3xl">
+        <div className="mb-8 sm:mb-10 text-center">
+          <h2 className="text-xl font-bold text-[#111111] sm:text-2xl md:text-3xl">
             Compare every feature,{" "}
             <span className="text-[#193FD3]">side by side</span>
           </h2>
@@ -376,18 +397,18 @@ const PriceCompare = () => {
         </div>
 
         {/* Stats bar */}
-        <div className="grid grid-cols-2 gap-8 rounded-2xl border border-gray-200 bg-white p-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 md:grid-cols-4">
           {stats.map((stat, i) => (
             <div key={i} className="text-center">
-              <p className="text-2xl font-bold text-[#193FD3] sm:text-3xl">
+              <p className="text-lg font-bold text-[#193FD3] sm:text-2xl md:text-3xl">
                 {stat.value}
               </p>
-              <p className="mt-1 text-xs text-gray-500">{stat.label}</p>
+              <p className="mt-1 text-[11px] sm:text-xs text-gray-500">{stat.label}</p>
             </div>
           ))}
         </div>
       </Wrapper>
-    </div>
+    </motion.div>
   );
 };
 
@@ -400,16 +421,20 @@ const trustPoints = [
 
 const TrialSection = () => {
   return (
-    <div className="py-16">
+    <div className="py-10 sm:py-16">
       <Wrapper>
-        <div
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={fadeUp}
           style={{
             background:
               "linear-gradient(135deg, #1233CC 0%, #0F3CCF 15%, #0B44D2 30%, #074CD4 45%, #0596F1 70%, #0083EA 85%, #0089EC 100%)",
           }}
-          className="rounded-[24px] px-8 py-14 text-center md:py-16"
+          className="rounded-[24px] px-5 py-10 text-center sm:px-8 sm:py-14 md:py-16"
         >
-          <h2 className="mx-auto text-[54px] font-bold leading-tight text-white md:text-4xl">
+          <h2 className="mx-auto text-[28px] font-bold leading-tight text-white sm:text-4xl md:text-4xl">
             Start your 14-day free trial today.
           </h2>
 
@@ -419,11 +444,11 @@ const TrialSection = () => {
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100">
+            <button className="w-full sm:w-auto rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100">
               Start Free — No Credit Card
             </button>
 
-            <button className="rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+            <button className="w-full sm:w-auto rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
               Book a Personalised Demo
             </button>
           </div>
@@ -445,7 +470,7 @@ const TrialSection = () => {
               </span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </Wrapper>
     </div>
   );

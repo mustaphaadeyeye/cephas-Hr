@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
@@ -26,7 +27,7 @@ const Navbar = () => {
     }`;
 
   return (
-    <nav className="w-full border-b border-gray-100 bg-white">
+    <nav className="fixed left-0 top-0 z-50 w-full border-b border-gray-100 bg-white">
       <Wrapper>
         <div className="flex h-[78px] items-center justify-between">
 
@@ -42,9 +43,19 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-10 lg:flex">
             {navItems.map((item) => (
-              <NavLink key={item.path} to={item.path} className={navLinkClass}>
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={navLinkClass}
+              >
                 {item.label}
-                {item.hasDropdown && <ChevronDown size={14} strokeWidth={1.8} />}
+
+                {item.hasDropdown && (
+                  <ChevronDown
+                    size={14}
+                    strokeWidth={1.8}
+                  />
+                )}
               </NavLink>
             ))}
           </div>
@@ -68,7 +79,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="border-t border-gray-100 py-5 lg:hidden">
+          <div className="border-t border-gray-100 bg-white py-5 lg:hidden">
             <div className="flex flex-col gap-5">
               {navItems.map((item) => (
                 <NavLink
@@ -78,7 +89,10 @@ const Navbar = () => {
                   className={mobileNavLinkClass}
                 >
                   {item.label}
-                  {item.hasDropdown && <ChevronDown size={15} />}
+
+                  {item.hasDropdown && (
+                    <ChevronDown size={15} />
+                  )}
                 </NavLink>
               ))}
 
@@ -94,3 +108,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
