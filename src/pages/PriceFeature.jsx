@@ -74,25 +74,28 @@ const Cell = ({ value, highlighted }) => {
 
 const PriceFeature = () => {
   return (
-    <div className="bg-white py-16">
+    <div className="bg-white py-10 sm:py-16">
       <Wrapper>
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-[#111111] sm:text-3xl">
+        <div className="mb-8 sm:mb-10 text-center">
+          <h2 className="text-xl font-bold text-[#111111] sm:text-2xl md:text-3xl">
             Compare every feature,{" "}
             <span className="text-[#193FD3]">side by side</span>
           </h2>
         </div>
 
+        {/* Scrolls horizontally only when the table doesn't fit (mobile);
+            no effect on wider screens where it already fits */}
         <div className="overflow-hidden rounded-2xl border border-gray-200">
-          <table className="w-full border-collapse text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] border-collapse text-sm">
             {/* Plan headers */}
             <thead>
               <tr>
-                <th className="w-1/3 bg-white p-4"></th>
+                <th className="w-1/3 bg-white p-3 sm:p-4"></th>
                 {plans.map((plan) => (
                   <th
                     key={plan.key}
-                    className={`p-4 text-center font-semibold ${
+                    className={`p-3 sm:p-4 text-center font-semibold ${
                       plan.highlighted ? "bg-[#eef2ff]" : "bg-white"
                     }`}
                   >
@@ -122,7 +125,7 @@ const PriceFeature = () => {
                   <tr>
                     <td
                       colSpan={4}
-                      className="bg-gray-50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-500"
+                      className="bg-gray-50 px-3 py-2 sm:px-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
                     >
                       {category.title}
                     </td>
@@ -131,14 +134,14 @@ const PriceFeature = () => {
                   {/* Feature rows */}
                   {category.rows.map((row, i) => (
                     <tr key={i} className="border-t border-gray-100">
-                      <td className="p-4 text-sm text-[#333]">{row.label}</td>
-                      <td className="p-4">
+                      <td className="p-3 sm:p-4 text-sm text-[#333]">{row.label}</td>
+                      <td className="p-3 sm:p-4">
                         <Cell value={row.starter} />
                       </td>
-                      <td className="bg-[#f5f8ff] p-4">
+                      <td className="bg-[#f5f8ff] p-3 sm:p-4">
                         <Cell value={row.growth} highlighted />
                       </td>
-                      <td className="p-4">
+                      <td className="p-3 sm:p-4">
                         <Cell value={row.enterprise} />
                       </td>
                     </tr>
@@ -147,6 +150,7 @@ const PriceFeature = () => {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </Wrapper>
     </div>

@@ -1,74 +1,139 @@
-import React from 'react'
-import Wrapper from '../components/Wrapper'
-import { ArrowRight, ArrowDown, X, Check, ShieldCheck, Database, TrendingUp, Lock  } from "lucide-react";
+
+import React from "react";
+import Wrapper from "../components/Wrapper";
+import {
+  ArrowRight,
+  ArrowDown,
+  X,
+  Check,
+  ShieldCheck,
+  Database,
+  TrendingUp,
+  Lock,
+} from "lucide-react";
 import Footer from "../components/Footer";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const fadeIn = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
+
+const stagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
 const AboutUs = () => {
   return (
-    <div>
-        <AboutHero/>
-        <AboutProblem/>
-        <ProductPhilosophy/>
-        <AboutPlatform/>
-        <AboutPeople/>
-        <TrialSection/>
-        <Footer/>
+    <div className="pt-[78px]">
+      <AboutHero />
+      <AboutProblem />
+      <ProductPhilosophy />
+      <AboutPlatform />
+      <AboutPeople />
+      <TrialSection />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
 const AboutHero = () => {
-    return (
-        <div>
-            <Wrapper>
-             <section className="relative mt-8 overflow-hidden rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
+  return (
+    <div>
+      <Wrapper>
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUp}
+          className="relative mt-8 overflow-hidden rounded-[32px] sm:rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16"
+        >
+          {/* Second / Inner Border - hidden on mobile, unchanged from sm: up */}
+          <div className="hidden sm:block absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
 
-      {/* Second / Inner Border */}
-      <div className="absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center">
-
-        {/* AI Badge */}
-        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-2 text-[9px] font-medium text-[#1744d8] sm:text-[10px]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#55bfff]" />
-           Simple, Transparent Pricing
-        </div>
-
-        {/* Heading */}
-        <h1 className="max-w-[750px] text-[38px] font-bold leading-[1.08] tracking-[-1.8px] text-[#292929] sm:text-[48px] md:text-[58px] lg:text-[62px]">
-          Building the operating system for modern, productive workforces.
-        </h1>
-
-        {/* Description */}
-        <p className="mt-5 max-w-[700px] text-[11px] leading-[2] text-[#444] sm:text-xs md:text-[18px]">
-         Per-employee pricing that scales with your team. No hidden setup fees, no module paywalls, no long-term lock-ins.
-        </p>
-
-        {/* CTAs */}
-        <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button
-            style={{
-              background:
-                "linear-gradient(135deg, #1233CC 0%, #0F3CCF 20%, #0596F1 80%, #0089EC 100%)",
-            }}
-            className="flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          {/* Content */}
+          <motion.div
+            variants={stagger}
+            className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center"
           >
-            Explore the Platform
-            <ArrowRight size={16} />
-          </button>
+            {/* AI Badge */}
+            <motion.div variants={fadeUp} className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-2 text-[9px] font-medium text-[#1744d8] sm:text-[10px]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#55bfff]" />
+              Simple, Transparent Pricing
+            </motion.div>
 
-          <button className="flex items-center gap-2 rounded-full border border-gray-200 px-8 py-3 text-sm font-semibold text-[#111111] transition-colors hover:bg-gray-50">
-            Meet the Team
-            <ArrowDown size={16} />
-          </button>
-        </div>
+            {/* Heading */}
+            <motion.h1
+              variants={fadeUp}
+              className="max-w-[750px] text-[30px] font-bold leading-[1.12] tracking-[-1.2px] text-[#292929] sm:text-[48px] sm:leading-[1.08] sm:tracking-[-1.8px] md:text-[58px] lg:text-[62px]"
+            >
+              Building the operating system for modern, productive workforces.
+            </motion.h1>
 
-      </div>
-    </section>
-            </Wrapper>
-        </div>
-    )
-}
+            {/* Description */}
+            <motion.p
+              variants={fadeUp}
+              className="mt-5 max-w-[700px] text-[13px] leading-[1.8] text-[#444] sm:text-xs sm:leading-[2] md:text-[18px]"
+            >
+              Per-employee pricing that scales with your team. No hidden setup
+              fees, no module paywalls, no long-term lock-ins.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-6 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
+            >
+              <button
+                style={{
+                  background:
+                    "linear-gradient(135deg, #1233CC 0%, #0F3CCF 20%, #0596F1 80%, #0089EC 100%)",
+                }}
+                className="flex w-full items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
+              >
+                Explore the Platform
+                <ArrowRight size={16} />
+              </button>
+
+              <button className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-200 px-8 py-3 text-sm font-semibold text-[#111111] transition-colors hover:bg-gray-50 sm:w-auto">
+                Meet the Team
+                <ArrowDown size={16} />
+              </button>
+            </motion.div>
+          </motion.div>
+        </motion.section>
+      </Wrapper>
+    </div>
+  );
+};
 
 const oldWay = [
   "6+ separate tools",
@@ -86,14 +151,20 @@ const cephasWay = [
 
 const AboutProblem = () => {
   return (
-    <div className="bg-[#f7f8fa] py-16">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeUp}
+      className="bg-[#f7f8fa] py-10 sm:py-16"
+    >
       <Wrapper>
         {/* Heading */}
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold text-[#111111] sm:text-4xl">
+        <motion.div variants={fadeUp} className="mb-8 sm:mb-10 text-center">
+          <h2 className="text-2xl font-bold text-[#111111] sm:text-3xl md:text-4xl">
             The Problem We Are Solving
           </h2>
-          <h3 className="mt-1 text-3xl font-bold text-[#193FD3] sm:text-4xl">
+          <h3 className="mt-1 text-2xl font-bold text-[#193FD3] sm:text-3xl md:text-4xl">
             (Why CephasHR Exists)
           </h3>
           <p className="mx-auto mt-4 max-w-2xl text-sm text-gray-500 sm:text-base">
@@ -101,12 +172,15 @@ const AboutProblem = () => {
             disconnected spreadsheets, separate payroll systems, manual
             attendance sheets, and rigid task tools.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content grid */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr]">
           {/* Left: narrative text */}
-          <div className="space-y-5 text-sm leading-relaxed text-[#444] sm:text-[15px]">
+          <motion.div
+            variants={fadeUp}
+            className="space-y-5 text-sm leading-relaxed text-[#444] sm:text-[15px]"
+          >
             <p>
               For decades, organisations have been forced to stitch together
               disconnected spreadsheets, separate payroll systems, manual
@@ -125,12 +199,18 @@ const AboutProblem = () => {
               tasks, and time tracking feed directly into zero-error payroll
               and AI-powered workforce analytics. One platform, no gaps.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right: comparison cards */}
-          <div className="space-y-4">
+          <motion.div
+            variants={stagger}
+            className="space-y-4"
+          >
             {/* The Old Way */}
-            <div className="rounded-2xl border border-red-100 bg-[#fef3f2] p-5">
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl border border-red-100 bg-[#fef3f2] p-5"
+            >
               <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-red-500">
                 The Old Way
               </p>
@@ -145,10 +225,13 @@ const AboutProblem = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
             {/* CephasHR Way */}
-            <div className="rounded-2xl border border-blue-100 bg-[#eef2ff] p-5">
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl border border-blue-100 bg-[#eef2ff] p-5"
+            >
               <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#193FD3]">
                 CephasHR Way
               </p>
@@ -163,14 +246,13 @@ const AboutProblem = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </Wrapper>
-    </div>
+    </motion.div>
   );
 };
-
 
 const principles = [
   {
@@ -201,35 +283,52 @@ const principles = [
 
 const ProductPhilosophy = () => {
   return (
-    <section className="bg-white py-16">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeUp}
+      className="bg-white py-10 sm:py-16"
+    >
       <Wrapper>
         {/* Badge */}
-        <div className="mb-5 flex justify-center">
+        <motion.div variants={fadeUp} className="mb-5 flex justify-center">
           <span className="rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-1.5 text-[10px] font-semibold tracking-wide text-[#1744d8]">
             OUR PRODUCT PHILOSOPHY
           </span>
-        </div>
+        </motion.div>
 
         {/* Heading */}
-        <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold leading-[1.15] text-[#111111] sm:text-4xl md:text-[44px]">
+        <motion.h2
+          variants={fadeUp}
+          className="mx-auto max-w-3xl text-center text-2xl font-bold leading-[1.15] text-[#111111] sm:text-4xl md:text-[44px]"
+        >
           Principles that shape{" "}
           <span className="text-[#193FD3]">every product decision.</span>
-        </h2>
+        </motion.h2>
 
         {/* Subtext */}
-        <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500 sm:text-base">
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500 sm:text-base"
+        >
           We don't design for feature checklists. We design for the person at
           the desk, the manager in the field, and the CFO who needs an answer
           by 9am.
-        </p>
+        </motion.p>
 
         {/* Cards */}
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          variants={stagger}
+          className="mt-10 grid grid-cols-1 gap-5 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {principles.map((item, i) => {
             const Icon = item.icon;
+
             return (
-              <div
+              <motion.div
                 key={i}
+                variants={fadeUp}
                 className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6"
               >
                 {/* Decorative blob */}
@@ -248,12 +347,12 @@ const ProductPhilosophy = () => {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 
@@ -289,55 +388,74 @@ const pillStats = [
 
 const AboutPlatform = () => {
   return (
-    <section
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeIn}
       style={{
         background:
           "linear-gradient(135deg, #1233CC 0%, #0F3CCF 15%, #0B44D2 30%, #074CD4 45%, #0596F1 70%, #0083EA 85%, #0089EC 100%)",
       }}
-      className="py-16"
+      className="py-10 sm:py-16"
     >
       <Wrapper>
         {/* Heading */}
-        <div className="mb-12 text-center">
+        <motion.div variants={fadeUp} className="mb-8 text-center sm:mb-12">
           <p className="mb-3 text-[11px] font-semibold tracking-wider text-white/70">
             CEPHASHR BY THE NUMBERS
           </p>
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
+          <h2 className="text-xl font-bold text-white sm:text-2xl md:text-3xl">
             Platform credibility you can measure.
           </h2>
-        </div>
+        </motion.div>
 
         {/* Main stats */}
-        <div className="mb-8 grid grid-cols-2 gap-8 lg:grid-cols-4">
+        <motion.div
+          variants={stagger}
+          className="mb-8 grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4"
+        >
           {mainStats.map((stat, i) => (
-            <div key={i} className="text-center">
-              <p className="text-3xl font-bold text-white sm:text-4xl">
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className="text-center"
+            >
+              <p className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
                 {stat.value}
               </p>
-              <p className="mt-2 text-sm font-medium text-white/90">
+              <p className="mt-2 text-xs font-medium text-white/90 sm:text-sm">
                 {stat.label}
               </p>
-              <p className="mt-1 text-xs text-white/50">{stat.note}</p>
-            </div>
+              <p className="mt-1 text-[10px] text-white/50 sm:text-xs">
+                {stat.note}
+              </p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Pill stats */}
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <motion.div
+          variants={stagger}
+          className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4"
+        >
           {pillStats.map((stat, i) => (
-            <div
+            <motion.div
               key={i}
-              className="rounded-2xl bg-white/10 px-5 py-4 text-center"
+              variants={fadeUp}
+              className="rounded-2xl bg-white/10 px-3 py-3 text-center sm:px-5 sm:py-4"
             >
-              <p className="text-lg font-bold text-white sm:text-xl">
+              <p className="text-base font-bold text-white sm:text-lg md:text-xl">
                 {stat.value}
               </p>
-              <p className="mt-1 text-xs text-white/70">{stat.label}</p>
-            </div>
+              <p className="mt-1 text-[11px] text-white/70 sm:text-xs">
+                {stat.label}
+              </p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 
@@ -378,33 +496,51 @@ const team = [
 
 const AboutPeople = () => {
   return (
-    <section className="bg-[#f7f8fa] py-16">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeUp}
+      className="bg-[#f7f8fa] py-10 sm:py-16"
+    >
       <Wrapper>
         {/* Badge */}
-        <div className="mb-5 flex justify-center">
+        <motion.div variants={fadeUp} className="mb-5 flex justify-center">
           <span className="rounded-full border border-[#dcecff] bg-[#f7fbff] px-4 py-1.5 text-[10px] font-semibold tracking-wide text-[#1744d8]">
             LEADERSHIP & TEAM
           </span>
-        </div>
+        </motion.div>
 
         {/* Heading */}
-        <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold leading-[1.15] text-[#111111] sm:text-4xl">
+        <motion.h2
+          variants={fadeUp}
+          className="mx-auto max-w-2xl text-center text-2xl font-bold leading-[1.15] text-[#111111] sm:text-4xl"
+        >
           Built by people who've{" "}
-          <span className="text-[#193FD3]">felt the problem firsthand.</span>
-        </h2>
+          <span className="text-[#193FD3]">
+            felt the problem firsthand.
+          </span>
+        </motion.h2>
 
         {/* Subtext */}
-        <p className="mx-auto mt-4 max-w-xl text-center text-sm text-gray-500 sm:text-base">
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-4 max-w-xl text-center text-sm text-gray-500 sm:text-base"
+        >
           Our founding team combines deep experience in enterprise software
           engineering, people operations, and financial compliance across
           African markets.
-        </p>
+        </motion.p>
 
         {/* Team cards */}
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          variants={stagger}
+          className="mt-10 grid grid-cols-1 gap-5 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {team.map((member, i) => (
-            <div
+            <motion.div
               key={i}
+              variants={fadeUp}
               className="rounded-2xl border border-gray-200 bg-white p-6"
             >
               <div className="mb-4 flex items-start gap-3">
@@ -413,6 +549,7 @@ const AboutPeople = () => {
                 >
                   {member.initials}
                 </div>
+
                 <div>
                   <p className="text-sm font-semibold text-[#111111]">
                     {member.name}
@@ -426,49 +563,61 @@ const AboutPeople = () => {
               <p className="text-xs leading-relaxed text-gray-500">
                 {member.bio}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 
 const TrialSection = () => {
   return (
-    <div className="py-16">
+    <div className="py-10 sm:py-16">
       <Wrapper>
-        <div
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUp}
           style={{
             background:
               "linear-gradient(135deg, #1233CC 0%, #0F3CCF 15%, #0B44D2 30%, #074CD4 45%, #0596F1 70%, #0083EA 85%, #0089EC 100%)",
           }}
-          className="rounded-[24px] px-8 py-14 text-center md:py-16"
+          className="rounded-[24px] px-5 py-10 text-center sm:px-8 sm:py-14 md:py-16"
         >
-          <h2 className="mx-auto text-[54px] w-1/2 font-bold leading-tight text-white md:text-4xl">
-           Ready to partner with a team dedicated to your workforce success?
-          </h2>
+          <motion.h2
+            variants={fadeUp}
+            className="mx-auto w-full text-[26px] font-bold leading-tight text-white sm:text-4xl md:w-1/2 md:text-4xl"
+          >
+            Ready to partner with a team dedicated to your workforce success?
+          </motion.h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
-           Talk with an HR solutions specialist or schedule an executive walkthrough of the CephasHR platform.
-          </p>
+          <motion.p
+            variants={fadeUp}
+            className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 md:text-base"
+          >
+            Talk with an HR solutions specialist or schedule an executive
+            walkthrough of the CephasHR platform.
+          </motion.p>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100">
+          <motion.div
+            variants={fadeUp}
+            className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          >
+            <button className="w-full sm:w-auto rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100">
               Schedule a Live Demo
             </button>
 
-            <button className="rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
-             Contact Our Team
+            <button className="w-full sm:w-auto rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+              Contact Our Team
             </button>
-          </div>
-
-         
-        </div>
+          </motion.div>
+        </motion.div>
       </Wrapper>
     </div>
   );
 };
 
+export default AboutUs;
 
-export default AboutUs

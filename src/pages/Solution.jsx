@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import Wrapper from '../components/Wrapper'
 import RoleSelector from "./RoleSelector"
 import Footer from "../components/Footer"
@@ -7,7 +8,7 @@ import { Clock, CheckCircle2, Rocket, Landmark, ShieldCheck, BarChart3, Trending
 
 const Solution = () => {
   return (
-    <div>
+    <div className="pt-[78px]"className="pt-[78px]">
       <SolutionHero />
       <RoleSelector />
       <SolutionOutcome />
@@ -22,10 +23,10 @@ const SolutionHero = () => {
     return (
           <div>
             <Wrapper>
-             <section className="relative mt-8 overflow-hidden rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
+             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="relative mt-8 overflow-hidden rounded-[32px] sm:rounded-[48px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
 
-      {/* Second / Inner Border */}
-      <div className="absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
+      {/* Second / Inner Border - hidden on mobile since it's purely decorative and was based on fixed pixel values that don't scale down well */}
+      <div className="hidden sm:block absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center">
@@ -37,7 +38,7 @@ const SolutionHero = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="max-w-[750px] text-[38px] font-bold leading-[1.08] tracking-[-1.8px] text-[#292929] sm:text-[48px] md:text-[58px] lg:text-[62px]">
+        <h1 className="max-w-[750px] text-[32px] font-bold leading-[1.1] tracking-[-1.2px] text-[#292929] sm:text-[48px] sm:leading-[1.08] sm:tracking-[-1.8px] md:text-[58px] lg:text-[62px]">
           Built for the way your {" "}
              <span className="text-[#1744d8]">
                organization works.
@@ -45,7 +46,7 @@ const SolutionHero = () => {
         </h1>
 
         {/* Description */}
-        <p className="mt-5 max-w-[700px] text-[11px] leading-[2] text-[#444] sm:text-xs md:text-[18px]">
+        <p className="mt-5 max-w-[700px] text-[13px] leading-[1.8] text-[#444] sm:text-xs sm:leading-[2] md:text-[18px]">
          Per-employee pricing that scales with your team. No hidden setup fees, no module paywalls, no long-term lock-ins.
         </p>
 
@@ -53,7 +54,7 @@ const SolutionHero = () => {
        
 
       </div>
-    </section>
+    </motion.section>
             </Wrapper>
         </div>
     )
@@ -120,22 +121,22 @@ const stats = [
  
 const SolutionOutcome = () => {
   return (
-    <section className="bg-white py-20 px-6">
+    <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="bg-white py-12 px-4 sm:px-6 md:py-20">
       <Wrapper>
       <div className="">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-[2.25rem] font-bold tracking-tight text-slate-900 leading-tight">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-[2.25rem] font-bold tracking-tight text-slate-900 leading-tight">
             Measurable outcomes,{" "}
             <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
               not just features.
             </span>
           </h2>
-          <p className="mt-3 text-slate-500 text-[15px]">
+          <p className="mt-3 text-slate-500 text-sm sm:text-[15px]">
             Quantified results from organisations running on CephasHR.
           </p>
         </div>
  
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map(({ icon: Icon, iconColor, value, valueColor, label }, i) => (
             <div
               key={i}
@@ -151,7 +152,7 @@ const SolutionOutcome = () => {
         </div>
       </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 
@@ -199,19 +200,19 @@ const testimonials = [
  
 const CustomerSpotlight = () => {
   return (
-    <section className="bg-slate-50 py-20 px-6">
+    <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="bg-slate-50 py-12 px-4 sm:px-6 md:py-20">
       <Wrapper>
 
       
       <div className="">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-[2.25rem] font-bold tracking-tight text-slate-900 leading-tight">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-[2.25rem] font-bold tracking-tight text-slate-900 leading-tight">
             Customer{" "}
             <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
               Spotlight by Sector
             </span>
           </h2>
-          <p className="mt-3 text-slate-500 text-[15px]">
+          <p className="mt-3 text-slate-500 text-sm sm:text-[15px]">
             Real outcomes from organisations using CephasHR across industries.
           </p>
         </div>
@@ -260,7 +261,7 @@ const CustomerSpotlight = () => {
         </div>
       </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 
@@ -274,18 +275,18 @@ const audiences = [
 
 const DemoCTA = () => {
   return (
-    <section className="bg-white py-10 px-6">
+    <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="bg-white py-10 px-4 sm:px-6">
       <Wrapper>
       <div
-        className=" rounded-3xl px-8 md:px-14 py-14 text-center"
+        className=" rounded-3xl px-5 sm:px-8 md:px-14 py-10 sm:py-14 text-center"
         style={{
           background: "linear-gradient(135deg, #1D2FD1 0%, #1E4FE8 45%, #2CA6F0 100%)",
         }}
       >
-        <h2 className="text-white font-bold text-3xl md:text-[2.25rem] leading-tight max-w-2xl mx-auto">
+        <h2 className="text-white font-bold text-2xl sm:text-3xl md:text-[2.25rem] leading-tight max-w-2xl mx-auto">
           Ready for a personalised, role-specific product walkthrough?
         </h2>
-        <p className="mt-4 text-blue-100 text-[15px] max-w-xl mx-auto">
+        <p className="mt-4 text-blue-100 text-sm sm:text-[15px] max-w-xl mx-auto">
           Book a demo built around your exact role, team size, and industry challenges — not a generic product tour.
         </p>
 
@@ -301,17 +302,17 @@ const DemoCTA = () => {
           ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <button className="bg-white text-blue-700 font-medium text-[14px] rounded-full px-6 py-3 hover:bg-blue-50 transition-colors">
+        <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+          <button className="w-full sm:w-auto bg-white text-blue-700 font-medium text-[14px] rounded-full px-6 py-3 hover:bg-blue-50 transition-colors">
             Book a Customised Demo
           </button>
-          <button className="bg-white/10 text-white font-medium text-[14px] rounded-full px-6 py-3 border border-white/30 hover:bg-white/20 transition-colors">
+          <button className="w-full sm:w-auto bg-white/10 text-white font-medium text-[14px] rounded-full px-6 py-3 border border-white/30 hover:bg-white/20 transition-colors">
             Talk to a Solutions Specialist
           </button>
         </div>
       </div>
       </Wrapper>
-    </section>
+    </motion.section>
   );
 };
 

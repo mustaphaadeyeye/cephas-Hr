@@ -49,7 +49,7 @@ const FaqItem = ({ faq, isOpen, onClick }) => (
   <div className="rounded-2xl border border-gray-200 bg-white">
     <button
       onClick={onClick}
-      className="flex w-full items-center justify-between px-6 py-4 text-left"
+      className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left sm:px-6"
     >
       <span className="text-sm font-medium text-[#111111]">
         {faq.question}
@@ -64,7 +64,7 @@ const FaqItem = ({ faq, isOpen, onClick }) => (
     </button>
 
     {isOpen && (
-      <div className="px-6 pb-5">
+      <div className="px-4 pb-5 sm:px-6">
         <p className="text-sm leading-relaxed text-gray-500">{faq.answer}</p>
       </div>
     )}
@@ -79,10 +79,10 @@ const PriceFaq = () => {
   };
 
   return (
-    <div className="bg-white py-16">
+    <div className="bg-white py-10 sm:py-16">
       <Wrapper>
-        <div className="mb-10 text-center">
-          <h2 className="text-[37px] font-bold text-[#272727]">FAQs</h2>
+        <div className="mb-8 sm:mb-10 text-center">
+          <h2 className="text-[26px] font-bold text-[#272727] sm:text-[37px]">FAQs</h2>
           <p className="mt-2 text-sm text-gray-500">
             Everything you need to know before you commit.
           </p>
@@ -103,10 +103,10 @@ const PriceFaq = () => {
         <div className="mt-10 text-center">
           <p className="mb-4 text-[14px] text-gray-400">Still have questions?</p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button className="rounded-full border border-[#193FD3] px-6 py-3 text-sm font-medium text-[#193FD3] hover:bg-[#f5f8ff]">
+            <button className="w-full sm:w-auto rounded-full border border-[#193FD3] px-6 py-3 text-sm font-medium text-[#193FD3] hover:bg-[#f5f8ff]">
               Talk to a Sales Specialist
             </button>
-            <button className="rounded-full bg-[#193FD3] px-6 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
+            <button className="w-full sm:w-auto rounded-full bg-[#193FD3] px-6 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
               Book a Live Demo
             </button>
           </div>
