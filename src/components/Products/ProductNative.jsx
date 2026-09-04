@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import OrganizationItem from "./OrganizationItem";
 import PillarCard from "./Features/FeaturesCard";
 import MobileAppCard from "./Features/MobileAppCard";
@@ -32,7 +32,14 @@ const ProductNative = () => {
         "Full historical logging of every document change, salary modification, and approval action — immutable and always available for compliance reviews.",
     },
   ];
-
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
   const benefits = [
     "Automate repetitive processes across HR, payroll and project management",
     "Gain complete workforce visibility from headcount to project profitability",
@@ -44,24 +51,45 @@ const ProductNative = () => {
   return (
     <div>
       <div className="bg-[#F7F7F9] pb-10 mt-20 rounded-2xl">
-        <div className="mx-auto max-w-[1400px] px-4 pt-20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+          className="mx-auto max-w-[1400px] px-4 pt-20"
+        >
           <OrganizationItem
             number="04"
             label="Time, Expenses & Payroll Connected Engine"
           />
-        </div>
-        <p className="mx-auto max-w-[1000px] px-4 text-center md:text-[37px] text-[20px] font-medium leading-[1.4] text-[#444]">
+        </motion.div>
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+          className="mx-auto max-w-[1000px] px-4 text-center md:text-[37px] text-[20px] font-medium leading-[1.4] text-[#444]"
+        >
           Native iOS & Android apps.{" "}
           <span className="bg-[radial-gradient(50%_50%_at_50%_50%,_#58B9F6_0%,_#1233CC_100%)] bg-clip-text text-transparent">
             Full HR power in your pocket.
           </span>
-        </p>
-        <p className="max-w-[672px] text-[18px] text-center mx-auto mt-4">
+        </motion.p>
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+          className="max-w-[672px] text-[18px] text-center mx-auto mt-4"
+        >
           Employees and managers each get a purpose-built mobile experience —
           not a stripped-down version of the web app.
-        </p>
-        <div className="flex flex-col px-8 gap-10 max-w-[1400px] mt-18 xl:flex xl:flex-row md:flex md:flex-col mx-auto items-center justify-center">
-          <div className="flex-1">
+        </motion.p>
+        <div className="flex flex-col px-8 gap-10 max-w-[1400px] mt-18 lg:flex-row mx-auto items-center justify-center">
+          <div className="lg:flex-1 w-full">
             <PillarCard
               badge="Staff / Employees"
               title="Employee Mobile"
@@ -84,10 +112,10 @@ const ProductNative = () => {
               ]}
             />
           </div>
-          <div className="flex-1">
+          <div className="w-full lg:flex-1">
             <MobileAppCard />
           </div>
-          <div className="flex-1">
+          <div className=" w-full lg:flex-1">
             <PillarCard
               badge="Work Admin / HR"
               title="Manager Mobile"
@@ -118,24 +146,45 @@ const ProductNative = () => {
           <span>🔒</span>
           <p>Enterprise Security & Trust Layer</p>
         </span>
-        <p className="mx-auto max-w-[1000px] px-4 py-4 text-center md:text-[37px] text-[20px] font-medium leading-[1.4] text-[#444]">
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+          className="mx-auto max-w-[1000px] px-4 py-4 text-center md:text-[37px] text-[20px] font-medium leading-[1.4] text-[#444]"
+        >
           Built on a foundation of.{" "}
           <span className="bg-[radial-gradient(50%_50%_at_50%_50%,_#58B9F6_0%,_#1233CC_100%)] bg-clip-text text-transparent">
             enterprise grade security.
           </span>
-        </p>
-        <p className="max-w-[672px] text-center text-[18px] ">
+        </motion.p>
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+          className="max-w-[672px] text-center text-[18px] "
+        >
           Sensitive salary, medical and disciplinary data is protected at every
           layer from access control to encryption.
-        </p>
+        </motion.p>
         <div>
-          <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            custom={0}
+            variants={fadeUp}
+            className="mx-auto grid max-w-[1400px] grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {privacyFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <div
                   key={index}
-                  className="flex flex-col gap-4 rounded-2xl bg-[#F7F8FA] p-6"
+                  className="flex flex-col gap-4 rounded-2xl bg-[#F7F8FA] p-6 mt-8"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E2EFFF]">
                     <Icon
@@ -155,17 +204,24 @@ const ProductNative = () => {
                 </div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* hr */}
       <div className="mt-20">
-        <p className="mx-auto max-w-[1000px] px-4 text-center md:text-[37px] text-[20px] font-medium leading-[1.4] text-[#444] ">
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+          className="mx-auto max-w-[1000px] px-4 text-center md:text-[37px] text-[20px] font-medium leading-[1.4] text-[#444] "
+        >
           From HR Operations to Employee Experience, <br />
           <span className=" bg-[radial-gradient(50%_50%_at_50%_50%,_#58B9F6_0%,_#1233CC_100%)] bg-clip-text text-transparent ">
             Everything Connects.
           </span>
-        </p>
+        </motion.p>
         <p className="text-center mt-2">
           Three simple steps from setup to strategic decisions.
         </p>
@@ -185,7 +241,14 @@ const ProductNative = () => {
             each role.
           </p>
           <div className="flex flex-col xl:flex xl:flex-row md:flex md:flex-col gap-10 mt-18 max-w-[1200px] mx-auto">
-            <div className="relative  overflow-hidden rounded-3xl bg-[#1233CC] p-8">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              custom={0}
+              variants={fadeUp}
+              className="relative  overflow-hidden rounded-3xl bg-[#1233CC] p-8"
+            >
               <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/5" />
 
               <h3 className="relative text-[26px] font-bold leading-[1.3] text-white">
@@ -209,7 +272,7 @@ const ProductNative = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
             <div>
               <PillarCard
                 badge="Staff / Employees"

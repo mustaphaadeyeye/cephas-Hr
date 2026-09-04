@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const steps = [
   { label: "Step 01" },
   { label: "Step 02" },
@@ -19,9 +20,23 @@ const HrOperations = [
     desc: "Give employees self-service access to every HR service. Give leaders real-time dashboards. Let AI surface what needs attention.",
   },
 ];
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
 const StepIndicator = () => {
   return (
-    <div>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      custom={0}
+      variants={fadeUp}
+    >
       <div className="relative mx-auto flex max-w-[1000px] items-center justify-between px-4">
         <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 border-t border-dashed border-[#B8D9FF]" />
 
@@ -47,7 +62,7 @@ const StepIndicator = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

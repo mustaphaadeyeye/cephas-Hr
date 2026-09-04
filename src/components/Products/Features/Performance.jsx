@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const StatBox = ({ value, total, label }) => (
   <div className="flex flex-col items-center rounded-xl bg-[#F5F6F8] px-4 py-3">
     <p className="text-[20px] font-bold text-[#111]">
@@ -34,8 +35,21 @@ const PerformanceCard = ({
   wins,
   width = "auto",
 }) => {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      custom={0}
+      variants={fadeUp}
       className="flex w-full max-w-[440px] flex-col gap-6 rounded-3xl bg-white p-6 shadow-sm"
       style={{ maxWidth: width }}
     >
@@ -85,7 +99,7 @@ const PerformanceCard = ({
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

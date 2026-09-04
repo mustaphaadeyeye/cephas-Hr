@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const quickActions = [
   { icon: "⏱️", label: "Start Timer" },
   { icon: "📄", label: "Submit Leave" },
@@ -6,8 +7,23 @@ const quickActions = [
 ];
 
 const MobileAppCard = () => {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
   return (
-    <div className="w-full overflow-hidden rounded-3xl bg-white shadow-lg">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      custom={0}
+      variants={fadeUp}
+      className="w-full overflow-hidden rounded-3xl bg-white shadow-lg"
+    >
       <div className="bg-gradient-to-br from-[#0B44D2] to-[#0596F1] px-5 pb-8 pt-5 text-white">
         <div className="flex items-center justify-between">
           <p className="text-[16px] font-bold">CephasHR Mobile</p>
@@ -55,7 +71,7 @@ const MobileAppCard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

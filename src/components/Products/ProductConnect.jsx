@@ -7,22 +7,45 @@ import actimg from "../../assets/activity.svg";
 import Cad from "../../assets/card2.svg";
 import Cadd from "../../assets/Card3.svg";
 import calendar from "../../assets/Calendar.svg";
+import { motion } from "framer-motion";
 
 const ProductConnect = () => {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
   return (
-    <div className="bg-white mt-20">
-      <div className="mx-auto max-w-[1400px] px-4 pt-20">
+    <div className="bg-white ">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        custom={0}
+        variants={fadeUp}
+        className="mx-auto max-w-[1400px] px-4 pt-20"
+      >
         <OrganizationItem
           number="02"
           label="Smart Scheduling & Work Execution"
         />
-      </div>
-      <p className="xl:px-24 px-10 text-left max-w-[900px] md:text-[37px] mt-6 text-[20px] font-medium leading-[1.4] text-[#444] ">
+      </motion.div>
+      <motion.p
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        custom={0}
+        variants={fadeUp}
+        className="xl:px-24 px-10 text-left max-w-[900px] md:text-[37px] mt-6 text-[20px] font-medium leading-[1.4] text-[#444] "
+      >
         Connect people, calendars and projects{" "}
         <span className="bg-[radial-gradient(50%_50%_at_50%_50%,_#58B9F6_0%,_#1233CC_100%)] bg-clip-text text-transparent">
           with zero scheduling friction.
         </span>
-      </p>
+      </motion.p>
       <div className="flex flex-col px-4 xl:flex xl:flex-row md:flex md:flex-col items-center justify-center gap-10 mt-20 xl:max-w-[1300px] mx-auto ">
         <div className="flex-1">
           <PillarCard

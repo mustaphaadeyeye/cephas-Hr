@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const aiModules = [
   {
     icon: "🗓️",
@@ -47,10 +48,24 @@ const engineFeatures = [
     description: "Weekly digest: 87% utilization, ₦2.1M payroll impact",
   },
 ];
-
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
 const AIEngineSection = () => {
   return (
-    <div className="mx-auto max-w-[1400px] rounded-[32px] bg-gradient-to-br from-[#0B44D2] to-[#0596F1] p-10 md:p-14">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      custom={0}
+      variants={fadeUp}
+      className="mx-auto max-w-[1400px] rounded-[32px] bg-gradient-to-br from-[#0B44D2] to-[#0596F1] p-10 md:p-14"
+    >
       <div className="flex flex-col gap-10 lg:flex-row lg:items-stretch">
         {/* Left column */}
         <div className="flex-1 text-white">
@@ -139,7 +154,7 @@ const AIEngineSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

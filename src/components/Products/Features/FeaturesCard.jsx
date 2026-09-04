@@ -1,4 +1,5 @@
 import vector from "../../../assets/Vector.svg";
+import { motion } from "framer-motion";
 const FeatureItem = ({ title, description }) => (
   <div className="flex items-start gap-3">
     <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#CDEAFC] text-[#1744d8]">
@@ -19,8 +20,21 @@ const PillarCard = ({
   height = "auto",
   width = "auto",
 }) => {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    }),
+  };
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      custom={0}
+      variants={fadeUp}
       className="flex flex-col gap-6 rounded-3xl bg-white p-8 shadow-sm"
       style={{ height, maxWidth: width }}
     >
@@ -43,7 +57,7 @@ const PillarCard = ({
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
