@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "../Button";
 import Wrapper from "../Wrapper";
 import video from "../../assets/Text.png";
@@ -14,8 +15,13 @@ import ProductEvidence from "./ProductEvidence";
 import ProductNative from "./ProductNative";
 import FinalCTA from "./FinalCTA";
 import { motion } from "framer-motion";
+import BookDemoModal from "../BookDemoModal";
 
 const ProductHero = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const openDemo = () => setIsDemoOpen(true);
+  const closeDemo = () => setIsDemoOpen(false);
+
   const organization = [
     {
       title: "01",
@@ -109,7 +115,10 @@ const ProductHero = () => {
               variants={fadeUp}
               className="flex flex-col xl:flex xl:flex-row md:flex md:flex-row items-center xl:gap-10 gap-2 justify-center"
             >
-              <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
+              <Button
+                onClick={openDemo}
+                className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]"
+              >
                 Book an Interactive Demo
               </Button>
 
@@ -191,6 +200,8 @@ const ProductHero = () => {
       <Wrapper>
         <FinalCTA />
       </Wrapper>
+
+      <BookDemoModal isOpen={isDemoOpen} onClose={closeDemo} />
     </div>
   );
 };

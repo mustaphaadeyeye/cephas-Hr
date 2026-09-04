@@ -3,10 +3,6 @@ import { motion } from "framer-motion";
 import Wrapper from "../components/Wrapper";
 import Button from "../components/Button";
 import ChrImg from "../assets/anochrcep.png"
-import OneImg from "../assets/one.png"
-import TwoImg from "../assets/two.png"
-import ThreeImg from "../assets/three.png"
-import FourImg from "../assets/four.png"
 import EmployeeImg from "../assets/employee.png"
 import AnalyticsImg from "../assets/analytical.png"
 import PayrollImg from "../assets/payroll.png"
@@ -17,6 +13,7 @@ import image1 from "../assets/africa2.jpg";
 import image2 from "../assets/africa3.jpg";
 import image3 from "../assets/africa4.jpg";
 import image4 from "../assets/africa5.webp";
+import BookDemoModal from "../components/BookDemoModal";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 35 },
@@ -31,11 +28,15 @@ const fadeIn = {
 const viewport = { once: true, amount: 0.15 };
 
 const Home = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const openDemo = () => setIsDemoOpen(true);
+  const closeDemo = () => setIsDemoOpen(false);
+
   return (
     <div>
       <Wrapper>
         <div className="pt-[78px]">
-          <HomeHero />
+          <HomeHero onOpenDemo={openDemo} />
           <ImageSection />
           <CardSection />
           <WhySection />
@@ -44,7 +45,9 @@ const Home = () => {
 
      
       <OverviewSection />
-      <NewSection />
+      <NewSection onOpenDemo={openDemo} />
+
+      <BookDemoModal isOpen={isDemoOpen} onClose={closeDemo} />
     </div>
   );
 };
@@ -129,7 +132,7 @@ const marqueeItems = [
   "Task Management",
 ];
 
-const HomeHero = () => {
+const HomeHero = ({ onOpenDemo }) => {
   const avatars = [img, image1, image2, image3, image4];
 
   return (
@@ -228,7 +231,10 @@ const HomeHero = () => {
         {/* CTA */}
         <motion.div variants={itemFadeUp}>
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
+            <Button
+              onClick={onOpenDemo}
+              className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]"
+            >
               Book a Demo
             </Button>
           </motion.div>
@@ -744,7 +750,7 @@ const TestimonialSection = () => {
   );
 };
 
-const NewSection = () => {
+const NewSection = ({ onOpenDemo }) => {
   return (
     <div >
       <Wrapper className="w-full bg-white px-6 py-16">
@@ -753,17 +759,17 @@ const NewSection = () => {
          
       </Wrapper>
        <TestimonialSection/>
-       <AnotherSection/>
+       <AnotherSection onOpenDemo={onOpenDemo} />
     </div>
   );
 };
 
-const AnotherSection = () => {
+const AnotherSection = ({ onOpenDemo }) => {
   return (
     <div>
       <Wrapper>
         {/* <TeamSecion/> */}
-        <ModernizeSection/>
+        <ModernizeSection onOpenDemo={onOpenDemo} />
        
       </Wrapper>
        <Footer/>
@@ -936,7 +942,7 @@ const TeamSecion = () => {
 };
 
 
-const ModernizeSection = () => {
+const ModernizeSection = ({ onOpenDemo }) => {
   return (
     <motion.div
       initial="hidden"
@@ -961,7 +967,10 @@ const ModernizeSection = () => {
       </p>
 
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
+        <button
+          onClick={onOpenDemo}
+          className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-full hover:bg-gray-100 transition-colors"
+        >
           Schedule Your Live Demo
         </button>
       <a

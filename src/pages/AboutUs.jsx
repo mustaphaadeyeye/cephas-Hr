@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useState } from "react";
 import Wrapper from "../components/Wrapper";
 import {
   ArrowRight,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+import BookDemoModal from "../components/BookDemoModal";
 
 const fadeUp = {
   hidden: {
@@ -52,6 +52,10 @@ const stagger = {
 };
 
 const AboutUs = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const openDemo = () => setIsDemoOpen(true);
+  const closeDemo = () => setIsDemoOpen(false);
+
   return (
     <div className="pt-[78px]">
       <AboutHero />
@@ -59,8 +63,10 @@ const AboutUs = () => {
       <ProductPhilosophy />
       <AboutPlatform />
       <AboutPeople />
-      <TrialSection />
+      <TrialSection onOpenDemo={openDemo} />
       <Footer />
+
+      <BookDemoModal isOpen={isDemoOpen} onClose={closeDemo} />
     </div>
   );
 };
@@ -571,7 +577,7 @@ const AboutPeople = () => {
   );
 };
 
-const TrialSection = () => {
+const TrialSection = ({ onOpenDemo }) => {
   return (
     <div className="py-10 sm:py-16">
       <Wrapper>
@@ -605,7 +611,10 @@ const TrialSection = () => {
             variants={fadeUp}
             className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <button className="w-full sm:w-auto rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100">
+            <button
+              onClick={onOpenDemo}
+              className="w-full sm:w-auto rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#193FD3] transition-colors hover:bg-gray-100"
+            >
               Schedule a Live Demo
             </button>
 
@@ -620,4 +629,3 @@ const TrialSection = () => {
 };
 
 export default AboutUs;
-

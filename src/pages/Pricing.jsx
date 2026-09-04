@@ -5,6 +5,7 @@ import { Check, X } from "lucide-react";
 import PriceFeature from "./PriceFeature";
 import PriceFaq from "./PriceFaq";
 import Footer from "../components/Footer";
+import BookDemoModal from "../components/BookDemoModal";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -12,6 +13,10 @@ const fadeUp = {
 };
 
 const Pricing = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const openDemo = () => setIsDemoOpen(true);
+  const closeDemo = () => setIsDemoOpen(false);
+
   return (
     <div className="pt-[78px]">
         <PricingHome/>
@@ -19,8 +24,10 @@ const Pricing = () => {
         <PriceFeature/>
         <PriceCompare/>
         <PriceFaq/>
-        <TrialSection/>
+        <TrialSection onOpenDemo={openDemo} />
         <Footer/>
+
+        <BookDemoModal isOpen={isDemoOpen} onClose={closeDemo} />
     </div>
   )
 }
@@ -419,7 +426,7 @@ const trustPoints = [
   "NDPR compliant",
 ];
 
-const TrialSection = () => {
+const TrialSection = ({ onOpenDemo }) => {
   return (
     <div className="py-10 sm:py-16">
       <Wrapper>
@@ -448,7 +455,10 @@ const TrialSection = () => {
               Start Free — No Credit Card
             </button>
 
-            <button className="w-full sm:w-auto rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+            <button
+              onClick={onOpenDemo}
+              className="w-full sm:w-auto rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            >
               Book a Personalised Demo
             </button>
           </div>

@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/anochr.jpg";
 import Wrapper from "./Wrapper";
 import Button from "./Button";
+import BookDemoModal from "./BookDemoModal";
 
 const navItems = [
   { label: "Product", path: "/product", hasDropdown: true },
@@ -15,6 +15,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   const navLinkClass = ({ isActive }) =>
     `flex items-center gap-1 text-sm font-medium ${
@@ -25,6 +26,11 @@ const Navbar = () => {
     `flex items-center justify-between text-sm font-medium ${
       isActive ? "text-[#173FD7]" : "text-[#111111]"
     }`;
+
+  const handleOpenDemo = () => {
+    setIsDemoOpen(true);
+    setIsOpen(false); // close mobile menu if it's open
+  };
 
   return (
     <nav className="fixed left-0 top-0 z-50 w-full border-b border-gray-100 bg-white">
@@ -62,7 +68,10 @@ const Navbar = () => {
 
           {/* Desktop Button */}
           <div className="hidden lg:block">
-            <Button className="rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
+            <Button
+              onClick={handleOpenDemo}
+              className="rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]"
+            >
               Book a Demo
             </Button>
           </div>
@@ -96,16 +105,21 @@ const Navbar = () => {
                 </NavLink>
               ))}
 
-              <Button className="w-full rounded-full bg-[#193FD3] py-3 text-sm font-medium text-white">
+              <Button
+                onClick={handleOpenDemo}
+                className="w-full rounded-full bg-[#193FD3] py-3 text-sm font-medium text-white"
+              >
                 Book a Demo
               </Button>
             </div>
           </div>
         )}
       </Wrapper>
+
+      {/* Book a Demo modal */}
+      <BookDemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </nav>
   );
 };
 
 export default Navbar;
-
