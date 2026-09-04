@@ -12,11 +12,11 @@ import AnalyticsImg from "../assets/analytical.png"
 import PayrollImg from "../assets/payroll.png"
 import { CircleDollarSign, Users, Sparkles, Wallet, Check } from "lucide-react";
 import Footer from "../components/Footer";
-import img from "../assets/img.svg";
-import image1 from "../assets/img2.svg";
-import image2 from "../assets/img3.svg";
-import image3 from "../assets/img4.svg";
-import image4 from "../assets/img5.svg";
+import img from "../assets/africa1.jpg";
+import image1 from "../assets/africa2.jpg";
+import image2 from "../assets/africa3.jpg";
+import image3 from "../assets/africa4.jpg";
+import image4 from "../assets/africa5.webp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 35 },
@@ -84,35 +84,105 @@ const features = [
   },
 ];
 
+
+
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const itemFadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const avatarPop = {
+  hidden: { opacity: 0, scale: 0.4, y: 10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 260, damping: 18 },
+  },
+};
+
+const FloatingIcon = ({ className, duration, delay = 0, distance = 18 }) => (
+  <motion.div
+    className={className}
+    animate={{ y: [0, -distance, 0], rotate: [0, 6, 0] }}
+    transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
+  />
+);
+
+const marqueeItems = [
+  "Employee Management",
+  "Time Tracking",
+  "Payroll",
+  "Performance",
+  "Attendance",
+  "Task Management",
+];
+
 const HomeHero = () => {
+  const avatars = [img, image1, image2, image3, image4];
+
   return (
     <motion.section
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
       variants={fadeIn}
-      className="relative mt-8 overflow-hidden rounded-[28px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:rounded-[48px] sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16">
+      className="relative mt-8 overflow-hidden rounded-[28px] border border-[#e2efff] bg-white px-4 pb-10 pt-6 sm:rounded-[48px] sm:px-8 sm:pt-7 md:pb-14 lg:px-12 lg:pb-16"
+    >
+      <FloatingIcon
+        className="pointer-events-none absolute left-[6%] top-[18%] h-10 w-10 rounded-2xl border border-[#dcecff] bg-white/60 backdrop-blur-sm"
+        duration={5}
+      />
+      <FloatingIcon
+        className="pointer-events-none absolute right-[8%] top-[28%] h-14 w-14 rounded-full border border-[#dcecff] bg-white/60 backdrop-blur-sm"
+        duration={6.5}
+        delay={0.6}
+      />
+      <FloatingIcon
+        className="pointer-events-none absolute left-[10%] bottom-[16%] h-8 w-8 rounded-xl border border-[#dcecff] bg-white/60 backdrop-blur-sm"
+        duration={4.5}
+        delay={1.2}
+        distance={12}
+      />
 
-      {/* Second / Inner Border (decorative — hidden on very small screens to avoid overlapping content) */}
       <div className="hidden sm:block absolute left-[12%] right-[12%] top-[72px] h-[420px] rounded-[50px] border border-[#e8f2ff]" />
 
-      {/* Content */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        variants={fadeUp}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center">
-
+        variants={containerStagger}
+        className="relative z-10 mx-auto flex max-w-[850px] flex-col items-center text-center"
+      >
         {/* AI Badge */}
-        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-3 py-1.5 text-[10px] font-medium text-[#1744d8] sm:px-4 sm:py-2 sm:text-[10px]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#55bfff]" />
+        <motion.div
+          variants={itemFadeUp}
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#dcecff] bg-[#f7fbff] px-3 py-1.5 text-[10px] font-medium text-[#1744d8] sm:px-4 sm:py-2 sm:text-[10px]"
+        >
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-[#55bfff]"
+            animate={{ scale: [1, 1.4, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
           AI-Powered Human Resource & Work Management Platform
-        </div>
+        </motion.div>
 
         {/* Heading */}
-        <h1 className="max-w-[750px] text-[32px] font-bold leading-[1.12] tracking-[-1.2px] text-[#292929] sm:text-[38px] sm:leading-[1.08] sm:tracking-[-1.8px] md:text-[58px] lg:text-[62px]">
+        <motion.h1
+          variants={itemFadeUp}
+          className="max-w-[750px] text-[32px] font-bold leading-[1.12] tracking-[-1.2px] text-[#292929] sm:text-[38px] sm:leading-[1.08] sm:tracking-[-1.8px] md:text-[58px] lg:text-[62px]"
+        >
           Streamline Your Entire
           <br />
           People Operations from
@@ -121,33 +191,71 @@ const HomeHero = () => {
           <span className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <span>Hire</span>
 
-            {/* Avatars */}
-            <span className="flex -space-x-2">
-              <img src={img} alt="" />
-                              <img src={image1} alt="" />
-                              <img src={image2} alt="" />
-                              <img src={image3} alt="" />
-                              <img src={image4} alt="" />
-            </span>
+            {/* Avatar stack — African corporate professional photos, floating */}
+            <motion.span variants={containerStagger} className="flex -space-x-2">
+              {avatars.map((src, i) => (
+                <motion.img
+                  key={i}
+                  src={src}
+                  alt=""
+                  variants={avatarPop}
+                  animate={{ y: [0, i % 2 === 0 ? -4 : 4, 0] }}
+                  transition={{
+                    y: { duration: 2.5 + i * 0.3, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                  whileHover={{ y: -8, scale: 1.15, zIndex: 10 }}
+                  className="relative h-10 w-10 rounded-full object-cover ring-2 ring-white sm:h-12 sm:w-12"
+                />
+              ))}
+            </motion.span>
 
             <span>Retire.</span>
           </span>
-        </h1>
+        </motion.h1>
 
         {/* Description */}
-        <p className="mt-5 max-w-[700px] text-sm leading-[1.7] text-[#444] sm:text-xs sm:leading-[2] md:text-[18px]">
+        <motion.p
+          variants={itemFadeUp}
+          className="mt-5 max-w-[700px] text-sm leading-[1.7] text-[#444] sm:text-xs sm:leading-[2] md:text-[18px]"
+        >
           Manage People. Organize Work. Track Time. Control Costs. Improve
           Performance. CepahsHR is an intelligent, all-in-one HR and Work
           Management platform that connects employees, projects, tasks,
           calendars, attendance, time tracking, expenses, payroll and
           performance in one seamless ecosystem.
-        </p>
+        </motion.p>
 
         {/* CTA */}
-        <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
-          Book a Demo
-        </Button>
+        <motion.div variants={itemFadeUp}>
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+            <Button className="mt-6 rounded-full bg-[#193FD3] px-8 py-3 text-sm font-medium text-white hover:bg-[#1535b8]">
+              Book a Demo
+            </Button>
+          </motion.div>
+        </motion.div>
 
+        {/* Infinite moving marquee — text only, no images */}
+        <motion.div variants={itemFadeUp} className="mt-10 w-full overflow-hidden">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-[#8a93a6]">
+            Everything your team needs, in one place
+          </p>
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <motion.div
+              className="flex w-max items-center gap-4"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              {[...marqueeItems, ...marqueeItems].map((label, i) => (
+                <span
+                  key={i}
+                  className="flex shrink-0 items-center rounded-full border border-[#e2efff] bg-[#f7fbff] px-4 py-2 text-xs font-medium text-[#1744d8] sm:text-sm"
+                >
+                  {label}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
       </motion.div>
     </motion.section>
   );
@@ -158,18 +266,6 @@ const ImageSection = () => {
     <motion.div className="mt-6 " initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} transition={{ duration: 0.6 }}>
       <div className="flex justify-center px-2">
         <motion.img src={ChrImg} alt="HR platform" className="w-full h-auto lg:w-auto" />
-      </div>
-
-      <div className="mt-8">
-        <p className="font-medium text-xl sm:text-2xl md:text-[31px] text-[#272727] text-center px-4">
-          Trusted by forward-thinking teams across Africa
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 lg:gap-16 mt-4 mb-5 px-4">
-          <img src={OneImg} alt="" className="h-6 sm:h-8 w-auto" />
-          <img src={TwoImg} alt="" className="h-6 sm:h-8 w-auto" />
-          <img src={ThreeImg} alt="" className="h-6 sm:h-8 w-auto" />
-          <img src={FourImg} alt="" className="h-6 sm:h-8 w-auto" />
-        </div>
       </div>
     </motion.div>
   );
@@ -648,10 +744,6 @@ const TestimonialSection = () => {
   );
 };
 
-
-
-
-
 const NewSection = () => {
   return (
     <div >
@@ -670,7 +762,7 @@ const AnotherSection = () => {
   return (
     <div>
       <Wrapper>
-        <TeamSecion/>
+        {/* <TeamSecion/> */}
         <ModernizeSection/>
        
       </Wrapper>
@@ -872,8 +964,8 @@ const ModernizeSection = () => {
         <button className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
           Schedule Your Live Demo
         </button>
-
-        <a
+      <a
+        
           href="#"
           className="text-white text-sm font-medium  hover:text-white/80 transition-colors"
         >
