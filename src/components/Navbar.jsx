@@ -107,7 +107,7 @@ const Navbar = () => {
 
               <Button
                 onClick={handleOpenDemo}
-                className="w-full rounded-full bg-[#193FD3] py-3 text-sm font-medium text-white"
+                className="w-full rounded-full bg-[#193FD3] py-3 text-sm font-medium text-white cursor-pointer"
               >
                 Book a Demo
               </Button>
