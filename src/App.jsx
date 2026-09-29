@@ -10,8 +10,7 @@ import Solution from "./pages/Solution";
 
 const App = () => {
   return (
-    // BASE_URL is "/" on localhost and "/cephas-hr/" on the deployed build
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "")}>
       <Navbar />
 
       <Routes>
