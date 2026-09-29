@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -10,7 +10,8 @@ import Solution from "./pages/Solution";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    // BASE_URL is "/" on localhost and "/cephas-hr/" on the deployed build
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Navbar />
 
       <Routes>
@@ -19,7 +20,6 @@ const App = () => {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/product" element={<Product />} />
         <Route path="/solution" element={<Solution />} />
-        
       </Routes>
     </BrowserRouter>
   );

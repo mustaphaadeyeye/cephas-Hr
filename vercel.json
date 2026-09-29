@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/cephas-hr/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
