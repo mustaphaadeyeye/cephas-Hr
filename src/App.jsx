@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const isInsideSuite = window.location.pathname.startsWith("/cephas-hr");
 
-    document.title = isInsideSuite ? "cephas suite" : "Cephas HR";
+    document.title = isInsideSuite ? "Cephas Suite" : "Cephas HR";
   }, []);
 
   return (
